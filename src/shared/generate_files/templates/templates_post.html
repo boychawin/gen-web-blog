@@ -1,0 +1,59 @@
+{{#*inline "page"}}
+<main class="space-y-40 mb-40">
+  <div class="max-w-3xl mx-auto px-6 md:px-12">
+    <article id="{{post.title}}" class="py-8 prose lg:prose-lg dark:prose-invert" itemscope
+      itemtype="https://schema.org/BlogPosting">
+      <header>
+        {{#if post.is_image}}
+        <div class="mb-8">
+          {{#if post.image_resize}}
+          <picture>
+            <source srcset="{{post.image_resize}}-640.avif 640w, 
+                            {{post.image_resize}}-768.avif 768w, 
+                            {{post.image_resize}}-1024.avif 1024w" type="image/avif" sizes="50vw">
+
+            <img src="{{post.image_resize}}-768.jpg" srcset="{{post.image_resize}}-640.jpg 640w, 
+                         {{post.image_resize}}-768.jpg 768w, 
+                         {{post.image_resize}}-1024.jpg 1024w" alt="{{post.title}} cover image" width="1024"
+              height="512" class="w-full h-auto sm:h-80 md:h-96 lg:h-128 object-cover rounded-lg bg-white"
+              itemprop="image" sizes="50vw" fetchpriority="high" loading="eager">
+          </picture>
+          {{else}}
+          <div class="w-full flex justify-center">
+            <img src="{{post.image}}" alt="{{post.title}} cover image" 
+                 class="w-full h-auto max-h-96 object-contain rounded-lg bg-white"
+                 itemprop="image" fetchpriority="high" loading="eager">
+          </div>
+          {{/if}}
+        </div>
+        {{/if}}
+
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4" itemprop="headline">
+          {{ post.title }}
+        </h1>
+
+        <div class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+          <time datetime="{{post.year}}-{{post.month}}-{{post.day}}" itemprop="datePublished">
+            {{month_name_en post.month}} {{post.day}}, {{post.year}}
+          </time>
+          &middot;
+
+          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">{{post.author}}</span>
+          </span>
+
+        </div>
+
+        <link itemprop="mainEntityOfPage" href="{{post.app_domain}}{{post.url}}" />
+      </header>
+
+      <div class="mt-6 text-gray-700 dark:text-gray-300" itemprop="articleBody">
+        {{{ post.contents }}}
+      </div>
+
+    </article>
+  </div>
+</main>
+
+{{/inline}}
+{{~> layout~}}

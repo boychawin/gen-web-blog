@@ -1,0 +1,102 @@
+{
+  "feed_updated": "2025-10-13T14:18:34+00:00",
+  "posts": [
+    {
+      "title": "เริ่มต้นกับ GenWebBlog",
+      "url": "/docs/getting-started.html"
+    },
+    {
+      "title": "การเขียนเนื้อหา (Markdown)",
+      "url": "/docs/writing-content.html"
+    },
+    {
+      "title": "การรองรับหลายภาษา (i18n)",
+      "url": "/docs/i18n.html"
+    },
+    {
+      "title": "Troubleshooting",
+      "url": "/docs/troubleshooting.html"
+    },
+    {
+      "title": "Templates & Layouts",
+      "url": "/docs/templates.html"
+    },
+    {
+      "title": "CLI Reference",
+      "url": "/docs/cli-reference.html"
+    },
+    {
+      "title": "Build & Deploy",
+      "url": "/docs/build-deploy.html"
+    },
+    {
+      "title": "Redirect สู่ยุคของ AEO และ GEO ที่ SEO ต้องปรับตัว",
+      "url": "/redirect-aeo-geo.html"
+    },
+    {
+      "title": "EEAT คือหัวใจของ SEO ยุคใหม่ที่ไม่ควรมองข้าม",
+      "url": "/eeat-guide.html"
+    },
+    {
+      "title": "SEO ยุคใหม่ต้องเข้าใจ SGE เพื่อไม่ให้เว็บเราหายไป",
+      "url": "/sge-explained.html"
+    },
+    {
+      "title": "AEO และ GEO คืออะไร? ปรับกลยุทธ์ SEO ให้พร้อมยุค AI",
+      "url": "/aeo-geo-new-era-of-search.html"
+    },
+    {
+      "title": "SEO ยังสำคัญอยู่ไหมในยุคที่ AI กำลังเปลี่ยนโลกการค้นหา?",
+      "url": "/is-seo-still-important-ai-era.html"
+    },
+    {
+      "title": "เขียนบทความ SEO ยังไงให้ติดหน้าแรกในปี 2025",
+      "url": "/seo-writing-guide-2025.html"
+    },
+    {
+      "title": "การใช้ Markdown ในการจัดการเนื้อหา",
+      "url": "/markdown-content-management.html"
+    },
+    {
+      "title": "GenWebBlog คืออะไร? วิธีใช้งานและคุณสมบัติเด่น",
+      "url": "/how-to-use-genwebblog.html"
+    },
+    {
+      "title": "วิธีตรวจสอบอันดับเว็บไซต์บน Google ฟรี ไม่ต้องใช้โปรแกรมแพง",
+      "url": "/seo/check-google-ranking-free-tools.html"
+    },
+    {
+      "title": "LSI Keyword คืออะไร? ช่วยเพิ่มอันดับ SEO ได้จริงไหม?",
+      "url": "/seo/lsi-keyword-seo-ranking.html"
+    },
+    {
+      "title": "SEO กับ SEM ต่างกันยังไง? เลือกแบบไหนดีสำหรับธุรกิจของคุณ",
+      "url": "/seo/seo-vs-sem-business-marketing.html"
+    },
+    {
+      "title": "คีย์เวิร์ด (Keyword) คืออะไร? เลือกคำให้โดนใจ Google",
+      "url": "/seo/what-is-keyword-seo-guide.html"
+    },
+    {
+      "title": "Technical SEO คืออะไร? ปรับเว็บให้เร็วและติดอันดับง่ายขึ้น",
+      "url": "/seo/technical-seo-beginner-guide.html"
+    },
+    {
+      "title": "Off-Page SEO คืออะไร? เพิ่มพลังเว็บไซต์ด้วย Backlink คุณภาพ",
+      "url": "/seo/off-page-seo-beginner-guide.html"
+    },
+    {
+      "title": "On-Page SEO คืออะไร? ปรับหน้าเว็บให้ Google ชอบแบบง่ายๆ",
+      "url": "/seo/on-page-seo-beginner-guide.html"
+    },
+    {
+      "title": "SEO คืออะไร? แนะนำสำหรับมือใหม่เพื่อเริ่มต้นทำ SEO",
+      "url": "/seo/what-is-seo-beginners-guide.html"
+    },
+    {
+      "title": "วิธีแก้ Properly Size Images และทำให้รองรับ AVIF + WebP",
+      "url": "/web-optimization/properly-size-images-avif-webp.html"
+    }
+  ],
+  "version": "1.0.0"
+}

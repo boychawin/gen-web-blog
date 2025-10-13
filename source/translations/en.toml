@@ -1,0 +1,200 @@
+# English translations for GenWebBlog
+title = "GenWebBlog - Create Website"
+description = "Automated website creation tool that helps you build Blogs, Profile websites, or Landing Pages easily"
+keywords = "GenWebBlog, create blog, create your own website, create content website, SEO writing techniques, AI-ready content, create personal blog"
+
+# Navigation
+nav_features = "Features"
+nav_how_to_use = "How to Use"
+nav_faq = "FAQ"
+nav_articles = "Articles"
+nav_search = "Search"
+nav_toggle_theme = "Toggle Dark Mode"
+
+# Hero Section
+hero_badge = "🐶 Boe’s here! Build your modern site in a snap!"
+hero_title = "GenWebBlog — Create your website for free"
+hero_subtitle = "Easy and Fast"
+hero_description = "GenWebBlog is an automated website creation tool that helps you create content suitable for AI and supports SEO to help your website rank on Google faster. You can easily create Blog websites, Profile websites, or Landing Pages. Supports Tailwind CSS and free deployment on Cloudflare"
+hero_cta_primary = "🌟 Start Creating Website"
+hero_cta_secondary = "📖 View Documentation"
+
+# Features Section
+features_title = "🚀 Our Outstanding Features"
+features_subtitle = "GenWebBlog is a Static Site Generator (SSG) that helps you create high-performance websites that support AI and SEO with features that make website management easy and secure"
+
+feature_auto_creation_title = "Automated Website Creation in Just a Few Clicks"
+feature_auto_creation_desc = "Just run one command and the system will create a website with proper SEO structure according to Google standards, ready to use immediately!"
+
+feature_markdown_title = "Manage Articles with Markdown (.md)"
+feature_markdown_desc = "Write and edit articles easily through .md files with guidance on writing to help your articles achieve top SEO ranking"
+
+feature_css_title = "Automatic CSS for Maximum Speed"
+feature_css_desc = "The system will create CSS only for the parts that are actually used, helping reduce file size and increase loading speed, making your website run fast and smooth"
+
+feature_image_title = "Automatic Image Resizing and Compression"
+feature_image_desc = "Efficiently reduce image file sizes, support JPG and AVIF formats, help increase page loading speed while maintaining image quality"
+
+feature_sitemap_title = "Automatic Sitemap and Robots.txt Generation"
+feature_sitemap_desc = "The system will automatically create Sitemap and Robots.txt for you every time content is updated, helping Google and other search engines efficiently crawl your website data"
+
+feature_json_ld_title = "Use JSON-LD to Increase Discovery Opportunities for Your Website"
+feature_json_ld_desc = "By using JSON-LD Structured Data, your website will be easier to understand by Google and other search tools, helping your information display better and reach new customers more effectively"
+
+feature_templates_title = "Free 3 Ready-to-Use Templates"
+feature_templates_desc = "Choose from professionally designed templates: Landing Page, Profile Page, Blog Page"
+
+feature_search_title = "Search Articles Quickly"
+feature_search_desc = "No need to waste time searching! Use our powerful search feature to find the articles you need in an instant, whether it's techniques or various tips that will help make your website development easier"
+
+feature_dark_mode_title = "Automatic Dark Mode Support"
+feature_dark_mode_desc = "Adjust lighting mode according to user needs, enhancing comfortable user experience in all lighting conditions"
+
+feature_deploy_title = "Free Deployment on Cloudflare"
+feature_deploy_desc = "Support fast and secure website publishing through Cloudflare at no additional cost"
+
+feature_security_title = "High Security with Static HTML"
+feature_security_desc = "Websites are built as Static HTML files, increasing security, reducing attack risks, and making website management easier"
+
+feature_community_title = "Join Our Community"
+feature_community_desc = "Join discussions, exchange knowledge, share ideas, and get advice from real developers and users through Discord"
+
+feature_seo_checker_title = "SEO Compliance Checker"
+feature_seo_checker_desc = "This feature checks whether your HTML files comply with SEO standards by checking the use of title, meta, and h1–h6 to ensure website structure is suitable for search engine ranking"
+
+feature_updates_title = "Free Lifetime Updates and Support"
+feature_updates_desc = "Get source code with user manual, customize as you wish, with a support team ready to help anytime"
+
+# Multilingual Support feature
+feature_multilingual_title = "Multilingual Support — Built-in i18n with easy language management"
+feature_multilingual_desc = "Create and manage content in multiple languages. Built-in language switching, per-language content folders, and translation-ready templates."
+
+# How to Use Section
+how_to_title = "How to Use GenWebBlog"
+how_to_subtitle = "Designed to help you create websites easily and quickly, whether you're a beginner or a professional, you can use it immediately"
+
+step_auto_title = "Automated Website Creation"
+step_auto_desc = "Just run one command and the system will create a website with good SEO structure for you immediately"
+
+step_markdown_title = "Manage Articles with Markdown"
+step_markdown_desc = "Write articles easily with .md files with built-in SEO guidance"
+
+step_deploy_title = "Deploy on Cloudflare"
+step_deploy_desc = "Publish your website for free on Cloudflare with a single command"
+
+# Testimonial Section
+testimonial_quote = "I put my full effort into this project because I use it all the time myself. Therefore, I promise to support and update it continuously. We will grow together for sustainable success"
+testimonial_author = "Boy Chawin"
+testimonial_role = "Software Developer"
+testimonial_bio = "Founder of GenWebBlog | Passionate about Building Scalable Web Solutions"
+
+# Pricing Section
+pricing_title = "Service Pricing"
+pricing_subtitle = "Pay once, use for lifetime with free updates and support for all features"
+pricing_recommended = "Recommended"
+pricing_amount = "0 THB"
+pricing_note = "One-time payment, no additional service fees"
+pricing_cta = "Buy Now and Start Using Immediately"
+pricing_guarantee = "We are committed to providing the best service. If you are not satisfied, we reserve the right not to refund, but we will try to help you get the best experience from this project"
+pricing_contact = "Have problems or questions? Contact us"
+
+# Reviews Section
+reviews_title = "Impressions from Real Users"
+review_author = "Mr. Boy"
+review_role = "Programmer"
+review_content = "I use this tool to write blogs easily, and SEO ranks on the first page comfortably. This website was created by GenWebBlog"
+
+# Articles Section
+articles_title = "Latest Articles"
+articles_subtitle = "Update knowledge and new techniques about website creation and SEO that help your website rank on Google easier"
+articles_view_all = "View All Articles →"
+
+# Footer
+footer_quick_links = "Quick Links"
+footer_home = "Home"
+footer_features = "Features"
+footer_pricing = "Pricing"
+footer_faq = "FAQs"
+footer_follow_us = "Follow Us"
+footer_legal = "Legal"
+footer_about = "About Us"
+footer_contact = "Contact Us"
+footer_privacy = "Privacy Policy"
+footer_terms = "Terms"
+footer_support = "Support"
+footer_support_email = "support@genwebblog.com"
+footer_support_desc = "If you have any questions or problems regarding usage, contact our team anytime"
+footer_rss = "RSS"
+footer_copyright = "© 2025 GenWebBlog - All Rights Reserved"
+
+# Search
+search_placeholder = "Search articles or content..."
+search_no_results = "No results found"
+search_results = "Search Results"
+
+# PDPA
+pdpa_message = "🛡️ This website uses cookies to improve user experience"
+pdpa_read_policy = "Read Policy"
+pdpa_reject = "Reject"
+pdpa_accept = "Accept All"
+
+# General
+loading = "Loading..."
+error = "Error"
+success = "Success"
+back_to_top = "Back to top"
+read_more = "Read More"
+written_by = "Written by"
+published_on = "Published on"
+updated_on = "Updated on"
+category = "Category"
+tags = "Tags"
+share = "Share"
+
+# Hero Feature Cards
+hero_performance_title = "High Performance"
+hero_performance_desc = "High Lighthouse Score"
+hero_security_title = "Secure"
+hero_security_desc = "Static HTML"
+hero_tailwind_title = "Tailwind CSS"
+hero_tailwind_desc = "Unlimited Customization"
+hero_hosting_title = "Free Hosting"
+hero_hosting_desc = "Cloudflare Deploy"
+
+# Pricing Feature List
+pricing_feature_auto_creation = "Automated Website Creation in Just a Few Clicks"
+pricing_feature_markdown = "Manage Articles with Markdown (.md)"
+pricing_feature_css = "Automatic CSS for Maximum Speed"
+pricing_feature_image = "Automatic Image Resizing and Compression"
+pricing_feature_sitemap = "Automatic Sitemap and Robots.txt Generation"
+pricing_feature_json_ld = "JSON-LD"
+pricing_feature_templates = "Free 3 Ready-to-Use Templates"
+pricing_feature_search = "Search Articles Quickly"
+pricing_feature_dark_mode = "Automatic Dark Mode Support"
+pricing_feature_deploy = "Free Deployment on Cloudflare"
+pricing_feature_security = "High Security with Static HTML"
+pricing_feature_community = "Join Our Community"
+pricing_feature_seo_checker = "SEO Compliance Checker"
+pricing_feature_updates = "Free Lifetime Updates and Support"
+
+# FAQ Section
+faq_title = "Frequently Asked Questions"
+faq_view_all = "View All Questions →"
+
+faq_q1_title = "Who is GenWebBlog suitable for?"
+faq_q1_answer = "Perfect for business owners, freelancers, bloggers, and anyone who wants a personal website that loads fast and ranks well in SEO"
+
+faq_q2_title = "Why choose GenWebBlog instead of WordPress or other website builders?"
+faq_q2_answer = "3-5x faster loading, higher SEO scores, no worries about updates or security, full code control"
+
+faq_q3_title = "What do I get after purchasing?"
+faq_q3_answer = "1. Complete source code<br>2. Detailed user manual<br>3. 3 templates (Landing, Blog, Profile)<br>4. Free lifetime updates"
+
+faq_q4_title = "Compared to hiring web developers, is this price cheap or expensive?"
+faq_q4_answer = "Equivalent quality web development typically starts at 10,000-50,000 THB and requires annual maintenance fees"
+
+faq_q5_title = "Can I start using it immediately after payment?"
+faq_q5_answer = "Yes! You'll receive a token and download link with installation guide within 15 minutes after payment"
+
+faq_q6_title = "If I encounter installation problems, what support is available?"
+faq_q6_answer = "We have a support team via Line Official and email, ready to help from the first step until you can use it successfully"

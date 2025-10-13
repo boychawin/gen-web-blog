@@ -1,0 +1,37 @@
+[app_info]
+app_name = "ใส่ชื่อแอปของคุณ"
+app_version = "1.0.0"
+app_author = "ใส่ชื่อผู้พัฒนา"
+app_description = "ใส่คำอธิบายระบบของคุณ"
+app_token = "ใส่ Token ID ที่ได้จากอีเมล"
+app_domain = "https://yourdomain.com"
+app_port = 8080
+app_phone = "+66 000 000 000"
+app_email = "your@email.com"
+app_facebook_link = "https://www.facebook.com/yourpage"
+app_instagram_link = "https://www.instagram.com/yourprofile"
+app_line_link = "https://line.me/R/ti/p/@yourlineid"
+app_youtube_link = "https://www.youtube.com/@yourchannel"
+app_github_link = "https://www.github.com/yourgithub"
+
+[facebook]
+facebook_id = "ใส่ Facebook Page ID"
+facebook_app_id = "ใส่ Facebook App ID"
+
+[twitter]
+twitter_site = "@your_twitter"
+twitter_creator = "@your_name"
+
+[deploy_github]
+token = "ใส่ GitHub Token"
+user = "github-username"
+repo_name = "github-repo-name"
+branch = "main"
+
+[deploy_cloudflare]
+api_token = "ใส่ Cloudflare Token"
+account_id = "ใส่ Cloudflare Account ID"
+project_name = "ชื่อโปรเจกต์บน Cloudflare"
+
+[deploy_domains]
+list = "yourdomain.com"

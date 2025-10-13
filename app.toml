@@ -1,0 +1,49 @@
+[app_info]
+app_name = "GenWebBlog"
+app_token = ""
+app_version = "1.0.0"
+app_author = "boychawin"
+app_description = "GenWebBlog is a simple blog system for developers."
+app_phone = "+66 985 679 714"
+app_email = "support@genwebblog.com"
+app_domain = "https://genwebblog.com"
+app_port = 3000
+app_facebook_link = "https://www.facebook.com/boychawincom/"
+app_instagram_link = "https://www.instagram.com/boychawin_com/"
+app_x_link = "https://x.com/boychawin/"
+app_line_link = "https://line.me/R/ti/p/@ddd8786n/"
+app_youtube_link = "https://www.youtube.com/@boychawin/"
+app_github_link = "https://www.github.com/boychawin/"
+
+[deploy_github]
+token = ""
+user = "boychawin"
+repo_name = "gen-web-blog"
+private = false
+branch = "main"
+
+[deploy_cloudflare]
+account_id = ""
+api_token = ""
+project_name = ""
+
+[deploy_domains]
+list = "genwebblog.com"
+
+[facebook]
+facebook_id = "101795585447276"
+facebook_app_id = "3710740645722239"
+
+[twitter]
+twitter_site = "@genwebblog"
+twitter_creator = "@boychawin"
+
+[languages]
+installed_languages = [
+    "th",
+    "en",
+]
+default_language = "th"
+
+[paths]
+use_directory_structure = true

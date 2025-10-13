@@ -1,0 +1,22 @@
+[theme]
+content = ["source/**/*", "public/javascripts/*"]
+
+[theme.dark_mode]
+type = "class"
+class = ".dark"
+
+[theme.screens]
+tablet = "640px"
+laptop = "1024px"
+desktop = "1280px"
+
+[theme.colors]
+primary = "#1d3b8f"
+secondary = "#c6733f"
+success = "#d07801"
+danger = "#9b1e2f"
+warning = "#b76d27"
+info = "#1a6b88"
+
+[theme.aria]
+enabled = "true"

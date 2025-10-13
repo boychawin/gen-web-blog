@@ -1,0 +1,31 @@
+:root, :root:not([data-theme]) {
+  --font-size: 1.25rem;
+  --line-height: calc(1.75 / 1.25);
+  --prose-font-size: 1.5rem;
+  --prose-line-height: calc(1.75 / 1.5);
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #e0e0e0;
+}
+
+
+:is(.dark, [data-theme="dark"]) {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --border-color: #333333;
+}
+
+noscript {
+  display: block;
+  padding: 1rem;
+  font-family: 'genwebblog', sans-serif;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  margin: 1rem auto;
+  max-width: 600px;
+}

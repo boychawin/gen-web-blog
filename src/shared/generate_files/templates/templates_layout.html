@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="{{lang}}">
+
+<head>
+    {{> head }}
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    {{> components/header }}
+    {{~> page}}
+    {{> components/footer }}
+    {{> components/common/scroll_top }} 
+    {{> components/common/pdpa_modal }}
+
+    <script src="{{root}}_system_/scripts/back_to_top.js" defer></script>
+    <script type="module" src="{{ root }}_system_/scripts/theme_switch.js"></script>
+    <script src="{{root}}_system_/scripts/seach.js" defer></script>
+    <script src="{{root}}_system_/scripts/highlight.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!-- Basic Meta Tags -->
+<meta charset="utf-8" />
+<title>{{title}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="{{description}}" />
+<meta name="author" content="{{app_author}}" />
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
+{{#if keywords}}
+<meta name="keywords" content="{{keywords}}" />
+{{/if}}
+{{#if lang}}
+<meta http-equiv="Content-Language" content="{{lang}}" />
+{{/if}}
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{title}}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{url}}" />
+<meta property="og:site_name" content="{{app_name}}" />
+{{#if description}}
+<meta property="og:description" content="{{description}}" />
+{{/if}}
+{{#if image}}
+<meta property="og:image" content="{{image}}" />
+{{/if}}
+{{#if post.image_secure_url}}
+<meta property="og:image:secure_url" content="{{post.image_secure_url}}" />
+{{/if}}
+{{#if post.image_width}}
+<meta property="og:image:width" content="{{post.image_width}}" />
+{{/if}}
+{{#if post.image_height}}
+<meta property="og:image:height" content="{{post.image_height}}" />
+{{/if}}
+{{#if post.image_alt}}
+<meta property="og:image:alt" content="{{post.image_alt}}" />
+{{/if}}
+{{#if post.image_type}}
+<meta property="og:image:type" content="{{post.image_type}}" />
+{{/if}}
+{{#if date_modified}}
+<meta property="og:updated_time" content="{{date_modified}}" />
+{{/if}}
+
+<!-- Open Graph / Optional Tags -->
+<meta property="og:locale" content="{{locale}}" />
+{{#if locale_alternate}}
+<meta property="og:locale:alternate" content="{{locale_alternate}}" />
+{{/if}}
+{{#if link_video}}
+<meta property="og:video" content="{{link_video}}" />
+{{/if}}
+
+<!-- Open Graph / Article Tag -->
+{{#if post.date_published}}
+<meta property="article:published_time" content="{{post.date_published}}" />
+{{/if}}
+{{#if post.date_modified}}
+<meta property="article:modified_time" content="{{post.date_modified}}" />
+{{/if}}
+{{#if post.author}}
+<meta property="article:author" content="{{post.author}}" />
+<meta property="article:publisher" content="{{post.author}}" />
+{{/if}}
+{{#if post.category}}
+<meta property="article:section" content="{{post.category}}" />
+{{/if}}
+{{#if post.tags}}
+{{#each post.tags}}
+<meta property="article:tag" content="{{this}}" />
+{{/each}}
+{{/if}}
+
+<!-- Open Graph /  Facebook Tag -->
+{{#if facebook_id}}
+<meta property="fb:admins" content="{{facebook_id}}" />{{/if}}
+{{#if facebook_app_id}}
+<meta property="fb:app_id" content="{{facebook_app_id}}" />{{/if}}
+<meta name="facebook-domain-verification" content="04vqwnnmyu1lzmxnmz72jnw1ovz8lh" />
+
+<!-- Open Graph /  Twitter Tag -->
+<meta name="twitter:card" content="summary_large_image" />
+{{#if twitter_site}}
+<meta name="twitter:site" content="{{twitter_site}}" />
+{{/if}}
+{{#if twitter_creator}}
+<meta name="twitter:creator" content="{{twitter_creator}}" />
+{{/if}}
+<meta name="twitter:title" content="{{title}}" />
+{{#if description}}
+<meta name="twitter:description" content="{{description}}" />
+{{/if}}
+{{#if image}}
+<meta name="twitter:image" content="{{image}}" />
+<meta name="twitter:image:alt" content="{{title}}" />
+{{/if}}
+<meta name="twitter:url" content="{{url}}" />
+{{#if app_author}}
+<meta name="twitter:label1" content="Written by" />
+<meta name="twitter:data1" content="{{app_author}}" />
+{{/if}}
+
+<!-- Canonical -->
+<link rel="canonical" href="{{url}}" />
+
+<!-- Stylesheets & Fonts -->
+<link rel="preload" href="https://genwebblog.com/_system_/fonts/genwebblog-regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+<link rel="preload" href="https://genwebblog.com/_system_/fonts/genwebblog-bold.woff" as="font" type="font/woff" crossorigin="anonymous" />
+<link rel="preload" href="https://genwebblog.com/_system_/fonts/genwebblog-italic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+<link rel="preload" href="/_system_/styles/vendor.css?v=1.0.5" as="style" />
+<link rel="stylesheet" href="/_system_/styles/vendor.css?v=1.0.5" />
+
+<!-- Favicon -->
+<link rel="icon" href="{{favicon_ico}}" type="image/x-icon" />
+<link rel="shortcut icon" href="{{favicon_ico}}" />
+<link rel="apple-touch-icon" sizes="180x180" href="{{apple_touch_icon}}" />
+<link rel="icon" type="image/png" sizes="16x16" href="{{favicon_ico_16}}" />
+<link rel="icon" type="image/png" sizes="32x32" href="{{favicon_ico_32}}" />
+<link rel="icon" type="image/svg+xml" href="{{favicon_svg}}" />
+<link rel="mask-icon" href="{{mask_icon}}" color="#" />
+<link rel="manifest" href="{{web_manifest}}" />
+
+<!-- PWA Metadata -->
+{{#if app_name}}
+<meta name="application-name" content="{{app_name}}" />
+<meta name="apple-mobile-web-app-title" content="{{app_name}}" />
+{{/if}}
+<meta name="generator" content="Genwebblog" />
+<meta name="theme-color" content="#" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="msapplication-TileColor" content="#" />
+
+<!-- Google Metadata -->
+<meta name="google-adsense-account" content="ca-pub-2369444070737256" />
+
+<!-- Atom Feed -->
+<link type="application/atom+xml" rel="alternate" href="{{app_domain}}/{{article.prefix}}sitemap.xml"
+  title="{{article.title}}" />
+  
+<!-- NoScript Fallback -->
+<noscript>
+  <link rel="stylesheet" href="/_system_/styles/noscript.css" />
+</noscript>
+<!-- Theme Script -->
+<script src="/_system_/scripts/theme.js"></script>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "{{type_page}}",
+  "headline": "{{title}}",
+  "mainEntityOfPage": {{
+    "@type": "WebPage",
+    "@id": "{{url}}"
+  }},
+  "url": "{{url}}",
+  "description": "{{description}}",
+  "image": "{{image}}",
+  "author": {{
+    "@type": "Person",
+    "name": "{{app_author}}",
+    "url": "{{app_domain}}/about/"
+  }},
+  "publisher": {{
+    "@type": "Organization",
+    "name": "{{app_author}}",
+    "logo": {{
+      "@type": "ImageObject",
+      "url": "{{app_domain}}/favicon/favicon.svg"
+    }}
+  }},
+  "datePublished": "{{date_published}}",
+  "dateModified": "{{date_modified}}"
+}}
+</script>

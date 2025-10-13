@@ -1,0 +1,7 @@
+
+User-agent: *
+Allow: /
+Sitemap: https://genwebblog.com/web-optimization/sitemap.xml
+Sitemap: https://genwebblog.com/en/sitemap.xml
+Sitemap: https://genwebblog.com/seo/sitemap.xml
+Sitemap: https://genwebblog.com/sitemap.xml

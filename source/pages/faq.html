@@ -1,0 +1,233 @@
+{{#*inline "page"}}
+
+<main class="space-y-40 mb-40">
+    <section class="max-w-3xl mx-auto px-6 md:px-12">
+        <div class="mt-16">
+            <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-gray-900 dark:text-gray-100">
+                {{title}}
+            </h1>
+            <p class="text-lg mt-4 text-neutral-600 dark:text-neutral-400">
+                {{description}}
+            </p>
+        </div>
+
+        <div class="max-w-screen-md mx-auto mt-10">
+            <div id="accordion">
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-1">
+                        <h2 class="text-xl md:text-xl font-bold">GenWebBlog เป็น Open Source หรือไม่?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-1" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>ใช่! GenWebBlog เป็น Open Source Software ภายใต้ MIT License ใช้ฟรี ไม่มีค่าใช้จ่าย สามารถใช้เชิงพาณิชย์ได้ คุณสามารถดู Source Code, แก้ไข และแจกจ่ายได้อย่างอิสระ</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-2">
+                        <h2 class="text-xl md:text-xl font-bold">จริงหรือไม่ที่ใช้ฟรีตลอดชีพ?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-2" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>จริง! เป็น Open Source ไม่มีค่าใช้จ่ายใดๆ ไม่มี Premium Features ไม่มีการคิดเงินรายเดือน คุณสามารถใช้งาน แก้ไข และแจกจ่ายได้อย่างอิสระ ไม่มีข้อจำกัดการใช้งาน</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-3">
+                        <h2 class="text-xl md:text-xl font-bold">ไม่เสียเงินแล้วจะได้อะไรบ้าง?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-3" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>ได้ทุกอย่างฟรี! Source Code เต็มรูปแบบ, เทมเพลตสวยๆ หลายแบบ, เอกสารการใช้งานครบถ้วน, Community สนับสนุน, อัปเดตฟรีตลอดชีพ และฟีเจอร์ครบครันไม่มีการซ่อน Premium Features</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-4">
+                        <h2 class="text-xl md:text-xl font-bold">ทำไมถึงให้ใช้ฟรี มีกำไรอย่างไร?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-4" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>เราเชื่อในแนวคิด Open Source ที่ทุกคนควรได้เข้าถึงเครื่องมือดีๆ ฟรี ผู้ใช้ที่ต้องการสนับสนุนสามารถ Donate ได้ตามใจ ไม่บังคับ เป้าหมายคือสร้าง Community ที่แข็งแกร่งและพัฒนาร่วมกัน</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-5">
+                        <h2 class="text-xl md:text-xl font-bold">วิธีเริ่มใช้งานยังไง?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-5" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>ง่ายมาก! ติดตั้งด้วยคำสั่งเดียว: <code>curl -fsSL https://install.genwebblog.com | sh</code> หรือดาวน์โหลดจาก GitHub Releases แล้วรัน <code>genwebblog init my-blog</code> ใช้งานได้ทันที ไม่ต้องสมัครสมาชิก</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-6">
+                        <h2 class="text-xl md:text-xl font-bold">หากติดปัญหา มีความช่วยเหลือหรือไม่?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-6" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>มี Community สนับสนุนผ่าน GitHub Issues, GitHub Discussions และอีเมล พร้อมทั้งเอกสารครบถ้วนและตัวอย่างการใช้งาน ไม่มีค่าใช้จ่ายสำหรับการขอความช่วยเหลือ</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-7">
+                        <h2 class="text-xl md:text-xl font-bold">เปรียบเทียบกับ WordPress หรือ Website Builder อื่นยังไง?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-7" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>GenWebBlog โหลดเร็วกว่า 3-5 เท่า (Static Site), ปลอดภัยกว่า (ไม่มี Database), คะแนน SEO สูงกว่า และที่สำคัญคือใช้ฟรี ไม่มีค่าใช้จ่ายรายเดือนเหมือน Website Builder อื่นๆ</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-8">
+                        <h2 class="text-xl md:text-xl font-bold">ใช้สำหรับเชิงพาณิชย์ได้หรือไม่?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-8" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>ได้! MIT License อนุญาตให้ใช้เชิงพาณิชย์ได้อย่างอิสระ คุณสามารถใช้สร้างเว็บไซต์ให้ลูกค้า, ขายบริการ หรือใช้ในธุรกิจได้โดยไม่ต้องจ่ายค่า License หรือ Royalty ใดๆ</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-9">
+                        <h2 class="text-xl md:text-xl font-bold">ต้องมีความรู้ Programming มากแค่ไหน?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-9" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>ไม่ต้องมีความรู้ Programming! ใช้งานผ่าน Command Line ง่ายๆ เขียนเนื้อหาด้วย Markdown ธรรมดา หากต้องการปรับแต่งขั้นสูงค่อยเรียนรู้ HTML/CSS เพิ่มเติม มีเอกสารและตัวอย่างครบถ้วน</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-10">
+                        <h2 class="text-xl md:text-xl font-bold">รองรับระบบปฏิบัติการอะไรบ้าง?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-10" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>รองรับทุก Platform! macOS (Intel & Apple Silicon), Linux, Windows พร้อม Binary สำเร็จรูป หรือติดตั้งผ่าน Cargo สำหรับคนที่มี Rust อยู่แล้ว ใช้งานได้เหมือนกันทุกระบบ</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-11">
+                        <h2 class="text-xl md:text-xl font-bold">Deploy เว็บไซต์ได้ที่ไหนบ้าง?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-11" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>Deploy ฟรีได้หลายที่! GitHub Pages, Cloudflare Pages, Netlify, Vercel, Firebase Hosting หรือ VPS/Server ใดๆ เพียงอัปโหลดไฟล์ HTML ที่ build แล้ว ไม่ต้องเสียค่า Hosting เพิ่ม</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-300 dark:border-gray-700">
+                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left"
+                        data-accordion-target="#accordion-body-12">
+                        <h2 class="text-xl md:text-xl font-bold">มีแผนการพัฒนาในอนาคตอย่างไร?</h2>
+                        <svg class="w-6 h-6 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-body-12" class="hidden py-4 text-gray-500 dark:text-gray-300">
+                        <p>เราพัฒนาอย่างต่อเนื่องโดย Community! แผนการพัฒนาเปิดโปร่งใสใน GitHub Roadmap ทุกคนสามารถเสนอ Feature ใหม่ หรือมาช่วยพัฒนาได้ ยังคงเป็น Open Source และใช้ฟรีตลอดไป</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('button[data-accordion-target]');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-accordion-target');
+            const targetElement = document.querySelector(targetId);
+            const icon = this.querySelector('svg');
+            
+            // Close all other accordions
+            buttons.forEach(otherButton => {
+                if (otherButton !== this) {
+                    const otherTargetId = otherButton.getAttribute('data-accordion-target');
+                    const otherTargetElement = document.querySelector(otherTargetId);
+                    const otherIcon = otherButton.querySelector('svg');
+                    
+                    otherTargetElement.classList.add('hidden');
+                    otherIcon.classList.remove('rotate-180');
+                }
+            });
+            
+            // Toggle current accordion
+            targetElement.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        });
+    });
+});
+</script>
+
+{{/inline}}
+{{~> layout~}}

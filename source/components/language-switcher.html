@@ -1,0 +1,15 @@
+
+<div data-language-switcher class="relative inline-block">
+  <noscript>
+    <div class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-600 dark:text-gray-400">Language:</span>
+      {{#if translations}}
+        <span class="font-medium text-gray-900 dark:text-gray-100">{{lang}}</span>
+      {{else}}
+        <a href="/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline transition-colors">ไทย</a>
+        <span class="text-gray-400 dark:text-gray-500">|</span>
+        <a href="/en/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline transition-colors">English</a>
+      {{/if}}
+    </div>
+  </noscript>
+</div>

@@ -1,0 +1,32 @@
+{{#*inline "page"}}
+<main class="space-y-40 mb-40">
+  <div class="max-w-3xl mx-auto px-6 md:px-12">
+    <article class="py-8 prose lg:prose-lg dark:prose-invert" itemscope itemtype="https://schema.org/Article">
+
+      <header>
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4" itemprop="headline">
+          {{ title }}
+        </h1>
+        {{#if description}}
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">{{ description }}</p>
+        {{/if}}
+      </header>
+
+      <div class="mt-6 text-gray-700 dark:text-gray-300" itemprop="articleBody">
+        {{#if post}}
+          {{{ post.contents }}}
+        {{else}}
+          {{#if translations.docs_links_html}}
+            {{{ translations.docs_links_html }}}
+          {{else}}
+            {{{ contents }}}
+          {{/if}}
+        {{/if}}
+      </div>
+
+    </article>
+  </div>
+</main>
+
+{{/inline}}
+{{~> layout~}}

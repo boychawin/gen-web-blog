@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "genwebblog";
+  src: url("../fonts/genwebblog-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "genwebblog";
+  src: url("../fonts/genwebblog-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "genwebblog";
+  src: url("../fonts/genwebblog-italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}

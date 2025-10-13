@@ -1,0 +1,131 @@
+<header>
+    <nav
+        id="nav"
+        class="relative z-20 w-full border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg"
+    >
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div
+                class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4"
+            >
+                <div
+                    class="relative z-30 flex w-full justify-between md:px-0 lg:w-fit"
+                >
+                    <a
+                        href="{{root}}/"
+                        aria-label="Go to homepage"
+                        class="flex items-center space-x-2"
+                    >
+                        <span
+                            class="text-2xl font-bold text-gray-900 dark:text-white"
+                            >{{app_name}}</span
+                        >
+                        <span
+                            class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100/70 dark:bg-gray-800/70 px-2 rounded-full flex items-center"
+                        >
+                            <span class="sr-only">เวอร์ชั่น</span>
+                            V{{app_version}}
+                        </span>
+                    </a>
+
+                    <div class="relative flex max-h-10 items-center lg:hidden">
+                        <button
+                            aria-label="Toggle navigation menu"
+                            id="hamburger"
+                            class="relative -mr-6 p-6 active:scale-95 duration-300"
+                        >
+                            <div
+                                aria-hidden="true"
+                                id="line"
+                                class="m-auto h-0.5 w-5 rounded bg-gray-800 dark:bg-white transition-transform duration-300 origin-top will-change-transform"
+                                style="transform: translateZ(0)"
+                            ></div>
+                            <div
+                                aria-hidden="true"
+                                id="line2"
+                                class="m-auto mt-2 h-0.5 w-5 rounded bg-gray-800 dark:bg-white transition-transform duration-300 origin-bottom will-change-transform"
+                                style="transform: translateZ(0)"
+                            ></div>
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    id="navLayer"
+                    aria-hidden="true"
+                    class="fixed inset-0 z-20 h-screen w-screen origin-bottom scale-y-0 bg-white backdrop-blur-2xl dark:bg-gray-900 lg:bg-inherit lg:hidden"
+                ></div>
+
+                <div
+                    id="navlinks"
+                    class="invisible absolute top-full left-0 z-30 w-full origin-top-right translate-y-1 scale-90 flex-col flex-wrap justify-end gap-6 rounded-3xl border border-gray-100 dark:border-gray-700 bg-inherit p-8 opacity-0 shadow-2xl shadow-gray-600/10 lg:visible lg:relative lg:flex lg:w-fit lg:flex-row lg:items-center lg:gap-0 lg:border-none lg:p-0 lg:opacity-100 lg:shadow-none"
+                >
+                    <div
+                        class="w-full text-gray-600 dark:text-gray-200 lg:w-auto lg:pr-4 lg:pt-0"
+                    >
+                        <div
+                            id="links-group"
+                            class="flex flex-col gap-6 tracking-wide lg:flex-row lg:gap-0 lg:text-lg"
+                        >
+                            <a
+                                href="#features"
+                                aria-label="Go to features section"
+                                class="hover:text-blue-600 dark:hover:text-blue-400 block transition md:px-4"
+                            >
+                                <span>{{translations.nav_features}}</span>
+                            </a>
+                            <a
+                                href="#how-to-use"
+                                aria-label="Go to how to use section"
+                                class="hover:text-blue-600 dark:hover:text-blue-400 block transition md:px-4"
+                            >
+                                <span>{{translations.nav_how_to_use}}</span>
+                            </a>
+                            <a
+                                href="#faq"
+                                aria-label="Go to FAQ section"
+                                class="hover:text-blue-600 dark:hover:text-blue-400 block transition md:px-4"
+                            >
+                                <span>{{translations.nav_faq}}</span>
+                            </a>
+                            <a
+                                href="#article"
+                                aria-label="Go to article section"
+                                class="hover:text-blue-600 dark:hover:text-blue-400 block transition md:px-4"
+                            >
+                                <span>{{translations.nav_articles}}</span>
+                            </a>
+
+                            <button
+                                id="searchButton"
+                                aria-label="Search Post"
+                                class="text-sm hover:text-blue-600 dark:hover:text-blue-400 transition px-4 py-0 min-w-[8px] min-h-[8px] flex items-center justify-center"
+                                onclick="openSearchModal()"
+                            >
+                                <span class="sr-only"
+                                    >{{translations.nav_search}}</span
+                                >
+                                🔍
+                            </button>
+
+                            <button
+                                id="dark-mode-toggle"
+                                aria-label="Toggle dark mode"
+                                class="text-sm hover:text-blue-600 dark:hover:text-blue-400 transition px-4 py-0 min-w-[8px] min-h-[8px] flex items-center justify-center"
+                            >
+                                <span class="sr-only"
+                                    >{{translations.nav_toggle_theme}}</span
+                                >
+                                🌙
+                            </button>
+                            <div class="px-4">
+                                {{> components/language-switcher}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+{{> components/common/search_modal}}

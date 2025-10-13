@@ -1,0 +1,241 @@
+name: Publish macOS Release
+
+permissions:
+  contents: write
+  packages: write
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+env:
+  REPO: boychawin/gen-web-blog
+  BINARY_NAME: genwebblog
+
+jobs:
+  verify:
+    name: Verify tag is from master
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify tag commit is on origin/master
+        run: |
+          set -euo pipefail
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
+          TAG_NAME="${GITHUB_REF_NAME}"
+          if [[ -z "$TAG_NAME" ]]; then
+            echo "No tag name available (GITHUB_REF_NAME empty)"
+            exit 1
+          fi
+          # Fetch tags and master
+          git fetch --no-tags --prune origin +refs/tags/*:refs/tags/* || true
+          git fetch origin master:refs/remotes/origin/master || true
+          # Resolve tag to commit SHA
+          TAG_SHA=$(git rev-list -n 1 "refs/tags/${TAG_NAME}" 2>/dev/null || true)
+          if [[ -z "$TAG_SHA" ]]; then
+            # Try resolving lightweight tag or directly the ref name
+            TAG_SHA=$(git rev-parse "${TAG_NAME}" 2>/dev/null || true)
+          fi
+          if [[ -z "$TAG_SHA" ]]; then
+            echo "Could not resolve tag '${TAG_NAME}' to a commit SHA"
+            exit 1
+          fi
+          echo "Tag ${TAG_NAME} resolves to commit ${TAG_SHA}"
+          # Check if origin/master contains the commit
+          if git branch --contains "$TAG_SHA" --remote | grep -q 'origin/master'; then
+            echo "Tag ${TAG_NAME} points to a commit that is on origin/master"
+          else
+            echo "Tag ${TAG_NAME} does NOT point to a commit on origin/master. Aborting."
+            exit 1
+          fi
+
+  build:
+    name: Build macOS binaries
+    needs: verify
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-13
+            target: x86_64-apple-darwin
+            archive_name: genwebblog-macos-x86_64.tar.gz
+          - os: macos-14
+            target: aarch64-apple-darwin
+            archive_name: genwebblog-macos-aarch64.tar.gz
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain and target
+        uses: dtolnay/rust-toolchain@1.82.0
+        with:
+          targets: ${{ matrix.target }}
+          components: "clippy rustfmt"
+
+      - name: Cache Cargo registry and git
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build (release) for target
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Strip binary (if present)
+        run: |
+          BIN="target/${{ matrix.target }}/release/${{ env.BINARY_NAME }}"
+          if [ -f "$BIN" ]; then
+            strip "$BIN" || true
+          else
+            echo "Binary not found: $BIN"
+            ls -la "target/${{ matrix.target }}/release" || true
+            exit 1
+          fi
+
+      - name: Create archive
+        run: |
+          mkdir -p release-artifacts
+          cp "target/${{ matrix.target }}/release/${{ env.BINARY_NAME }}" release-artifacts/${{ env.BINARY_NAME }}
+          cp README.md release-artifacts/ || true
+          cp LICENSE release-artifacts/ || true
+          (cd release-artifacts && tar czf ../${{ matrix.archive_name }} .)
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.archive_name }}
+          path: ${{ matrix.archive_name }}
+          retention-days: 7
+
+  release:
+    name: Create GitHub Release and upload assets
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: List downloaded artifacts
+        run: ls -la artifacts || true
+
+      - name: Create GitHub Release
+        id: gh_release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*.tar.gz
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            Automated macOS release for ${{ github.ref_name }}.
+
+            Installation (macOS):
+            curl -fsSL https://raw.githubusercontent.com/${{ env.REPO }}/master/install.sh | bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-install:
+    name: Generate and publish install.sh to master
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Ensure git user is configured
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create install.sh
+        run: |
+          cat > install.sh <<'EOF'
+          #!/usr/bin/env bash
+          # gen-web-blog install script (macOS-focused)
+          # This script detects architecture, downloads the matching release tarball,
+          # extracts the binary and installs it to /usr/local/bin (requires sudo).
+
+          set -euo pipefail
+
+          REPO="boychawin/gen-web-blog"
+          BINARY_NAME="genwebblog"
+          TAG="${1:-${GITHUB_TAG:-}}"
+
+          # If the script is run outside GitHub Actions, try to detect the tag from latest release
+          if [[ -z "$TAG" ]]; then
+            # Try GitHub API for latest release
+            TAG="$(curl -sL "https://api.github.com/repos/${REPO}/releases/latest" | grep -E '"tag_name":' | head -n1 | sed -E 's/.*"([^"]+)".*/\1/')"
+          fi
+
+          # Fallback to 'latest' text if still empty
+          if [[ -z "$TAG" ]]; then
+            echo "Could not determine release tag. Please pass a tag as argument, e.g. 'install.sh v1.2.3'." >&2
+            exit 1
+          fi
+
+          ARCH="$(uname -m)"
+          case "$ARCH" in
+            x86_64) ASSET_NAME="genwebblog-macos-x86_64.tar.gz" ;;
+            arm64|aarch64) ASSET_NAME="genwebblog-macos-aarch64.tar.gz" ;;
+            *)
+              echo "Unsupported architecture: $ARCH" >&2
+              exit 1
+              ;;
+          esac
+
+          DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${TAG}/${ASSET_NAME}"
+
+          TMPDIR="$(mktemp -d)"
+          trap 'rm -rf \"$TMPDIR\"' EXIT
+
+          echo "Downloading ${DOWNLOAD_URL} ..."
+          curl -fsSL "$DOWNLOAD_URL" -o "$TMPDIR/${ASSET_NAME}"
+
+          echo "Extracting..."
+          tar -xzf "$TMPDIR/${ASSET_NAME}" -C "$TMPDIR"
+
+          if [[ ! -f "$TMPDIR/${BINARY_NAME}" ]]; then
+            echo "Downloaded archive does not contain ${BINARY_NAME}." >&2
+            exit 1
+          fi
+
+          echo "Installing to /usr/local/bin (may require sudo)..."
+          sudo install -m 0755 "$TMPDIR/${BINARY_NAME}" /usr/local/bin/${BINARY_NAME}
+
+          echo ""
+          echo "Installed ${BINARY_NAME} successfully. Run '${BINARY_NAME} --help' to get started."
+          EOF
+
+          chmod +x install.sh
+
+      - name: Commit and push install.sh to master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add install.sh
+          if git diff --staged --quiet; then
+            echo "No changes to install.sh; nothing to commit."
+          else
+            git commit -m "chore: update install.sh for ${GITHUB_REF_NAME}"
+            git push origin master
+          fi
+
+      - name: Create Release Page Note (optional)
+        if: always()
+        run: |
+          echo "install.sh updated on master. Users can install with:"
+          echo "  curl -fsSL https://raw.githubusercontent.com/boychawin/gen-web-blog/master/install.sh | bash"

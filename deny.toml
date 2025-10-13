@@ -1,0 +1,16 @@
+# Clean minimal cargo-deny configuration
+# Allows common permissive licenses and warns on multiple versions.
+
+[licenses]
+allow = ["MIT", "Apache-2.0", "Apache-2.0 WITH LLVM-exception", "BSD-2-Clause", "BSD-3-Clause", "ISC", "0BSD", "CC0-1.0", "MPL-2.0", "Unicode-3.0", "NCSA"]
+
+[bans]
+multiple-versions = "warn"
+wildcards = "allow"
+
+[advisories]
+# Reduce noise: temporarily disable unmaintained advisory checks so we can focus on licenses
+unmaintained = "none"
+
+# Temporarily ignore the `atty` unsound advisory pulled in transitively
+ignore = ["RUSTSEC-2021-0145"]

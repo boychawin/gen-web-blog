@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{lang}}" data-framework="genwebblog">
+
+<head>
+    {{> head }}
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <!-- Header -->
+    {{> components/header }}
+    <!-- Main Content -->
+    {{~> page}}
+    <!-- Footer -->
+    {{> components/common/ads }} {{> components/footer }}
+    <!-- Scroll to Top Button -->
+    {{> components/common/scroll_top }} {{> components/common/pdpa_modal }}
+
+    <script src="/_system_/scripts/back_to_top.js" defer></script>
+    <script src="/_system_/scripts/theme_switch.js" defer></script>
+    <script src="/_system_/scripts/seach.js" defer></script>
+    <script src="/_system_/scripts/highlight.js" defer></script>
+    <script src="/javascripts/gtag.js" defer></script>
+    <script src="/javascripts/header.js" defer></script>
+    <script src="/javascripts/language-switcher.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="{{article.lang}}">
+    <!-- Generator Information -->
+    <generator uri="{{article.app_domain}}/{{article.prefix}}" version="0.1.0">{{article.title}}</generator>
+
+    <!-- Self and Alternate Links -->
+    <link href="{{article.app_domain}}/{{article.prefix}}sitemap.xml" rel="self" type="application/atom+xml" />
+    <link href="{{article.app_domain}}/{{article.prefix}}" rel="alternate" type="text/html" />
+
+    <!-- Feed Identification -->
+    <id>{{article.app_domain}}/{{article.prefix}}</id>
+    <title>{{article.title}}</title>
+    <subtitle>{{article.description}}</subtitle>
+
+    <!-- Author Information -->
+    <author>
+        <name>{{article.author}}</name>
+        <uri>{{article.author_url}}</uri>
+        <email>{{article.author_email}}</email>
+    </author>
+
+    <!-- Feed Metadata -->
+    <updated>{{feed_updated}}</updated>
+    <rights>© {{article.author}} {{current_year}}. All rights reserved.</rights>
+
+    <!-- Entries for Each Post -->
+    {{#each posts}}
+    <entry>
+        <!-- Post Title -->
+        <title>{{title}}</title>
+
+        <!-- Post URL -->
+        <link rel="alternate" href="{{app_domain}}{{url}}" type="text/html" title="{{title}}" />
+
+        <!-- Post ID -->
+        <id>{{app_domain}}{{url}}</id>
+
+        <!-- Publication and Update Dates -->
+        <published>{{published}}</published>
+        <updated>{{updated}}</updated>
+
+        <!-- Post Summary -->
+        <summary>{{description}}</summary>
+
+        <!-- Post Content -->
+        <content type="html" xml:base="{{app_domain}}{{url}}">
+            <![CDATA[{{contents}}]]>
+        </content>
+
+        <!-- Post Categories -->
+        {{#if keywords}}
+        <category term="{{keywords}}" />
+        {{/if}}
+
+        <!-- Post Author -->
+        <author>
+            <name>{{author}}</name>
+            <uri>{{author_url}}</uri> 
+            <email>{{author_email}}</email> 
+        </author>
+
+        <!-- Optional: Thumbnail Image -->
+        {{#if thumbnail}}
+        <media:thumbnail url="{{image}}" />
+        {{/if}}
+    </entry>
+    {{/each}}
+</feed>

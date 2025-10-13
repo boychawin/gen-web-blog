@@ -1,0 +1,24 @@
+{
+  "name": "GenWebBlog",
+  "short_name": "GenWeb",
+  "description": "เครื่องมือสร้างเว็บไซต์ที่พร้อมใช้งานกับ AI และ SEO ที่ดี",
+  "lang": "th",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

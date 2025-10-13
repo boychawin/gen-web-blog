@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Rust
+target/
+**/*.rs.bk
+
+# GenWebBlog specific
+public/_system_/styles/vendor.css
+public/_system_/styles/app.css
+public/_system_/styles/fonts.css
+public/_system_/styles/noscript.css
+public/_system_/styles/tailwind.css
+
+# Build artifacts
+# build/
+
+# Integration test artifacts (temporary)
+test_output/
+tmp_test_*/
+
+# Config & cache
+token_cache.json
+genwebblog
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+.#*

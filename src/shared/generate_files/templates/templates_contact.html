@@ -1,0 +1,59 @@
+{{#*inline "page"}}
+<main class="space-y-40 mb-40">
+    <section class="max-w-3xl mx-auto px-6 md:px-12">
+        <div class="mt-16">
+            <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-gray-900 dark:text-gray-100">
+                {{title}}
+            </h1>
+            <p class="text-lg mt-4 text-gray-700 dark:text-gray-300">
+                {{description}}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
+            <div>
+                <h2 class="font-semibold text-2xl text-gray-900 dark:text-gray-100">ติดต่อเรา</h2>
+                <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-400 mt-3">
+                    เราพร้อมให้ความช่วยเหลือคุณตลอดเวลา ไม่ว่าจะเป็นคำถามเกี่ยวกับการพัฒนาเว็บไซต์
+                    หรือข้อเสนอแนะเพื่อพัฒนา <strong>{{app_name}}</strong> ให้ดียิ่งขึ้น
+                </p>
+                <div class="mt-6 space-y-3">
+                    <div class="flex items-center space-x-3 text-gray-700 dark:text-gray-400">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z">
+                            </path>
+                        </svg>
+                        <span>สกลนคร, ประเทศไทย</span>
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-gray-700 dark:text-gray-400">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2zm0 4l-8 5-8-5V6l8 5 8-5v2z">
+                            </path>
+                        </svg>
+                        <a href="mailto:{{app_email}}" class="hover:underline text-blue-600 dark:text-blue-400"
+                            aria-label="Email ติดต่อเรา">
+                            {{app_email}}
+                        </a>
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-gray-700 dark:text-gray-400">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.48 2.53.74 3.88.74a1 1 0 011 1v3.5a1 1 0 01-1 1C9.94 22 2 14.06 2 4.5a1 1 0 011-1H6.5a1 1 0 011 1c0 1.35.26 2.67.74 3.88a1 1 0 01-.27 1.11l-2.2 2.2z">
+                            </path>
+                        </svg>
+                        <a href="tel:{{app_phone}}" class="hover:underline text-blue-600 dark:text-blue-400"
+                            aria-label="โทรศัพท์ติดต่อเรา">
+                             {{app_phone}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{{/inline}}
+{{~> layout~}}

@@ -1,0 +1,78 @@
+{{#*inline "page"}}
+<main class="space-y-40 mb-40">
+  <div class="max-w-screen-xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10">
+    <div class="pb-6 pt-6">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 dark:text-gray-100">
+        {{title}}
+      </h1>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-8">
+      <aside
+        class="w-full sm:w-[300px] bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+        <h2 class="font-bold uppercase text-blue-600 dark:text-blue-400 mb-4"><a href="/articles">โพสต์ทั้งหมด</a></h2>
+        <ul class="space-y-3">
+          {{#each articles}}
+          <li>
+            <a href="../{{path}}" data-path="{{path}}"
+              class="category-link block hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              title="ดูโพสต์ทั้งหมดเกี่ยวกับ {{link_text}}" aria-label="ดูโพสต์ทั้งหมดเกี่ยวกับ {{link_text}}">
+              <h3
+                class="px-3 py-2 text-lg font-medium uppercase text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+                {{link_text}} ({{post_count}})
+              </h3>
+            </a>
+          </li>
+          {{/each}}
+        </ul>
+      </aside>
+
+      <div class="flex-1">
+        <ul class="space-y-8">
+          {{#each posts}}
+          <li class="py-6 border-b border-gray-200 dark:border-gray-700">
+            <article class="flex flex-col space-y-3">
+
+              <dl>
+                <dt class="sr-only">Published on</dt>
+                <dd class="text-base font-medium text-gray-500 dark:text-gray-400">
+                  <time datetime="{{year}}-{{month}}-{{day}}">
+                    {{month_name_en month}} {{day}}, {{year}}
+                  </time>
+                </dd>
+              </dl>
+
+              <h3 class="text-2xl sm:text-3xl font-bold leading-tight">
+                <a title="{{title}}" href="..{{url}}"
+                  class="text-gray-900 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-400">
+                  {{title}}
+                </a>
+              </h3>
+
+              {{#if excerpt}}
+              <p class="text-gray-600 dark:text-gray-300 line-clamp-3">
+                {{excerpt}}
+              </p>
+              {{/if}}
+
+              <div>
+                <a href="..{{url}}" class="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                  title="อ่านเพิ่มเติมเกี่ยวกับ {{title}}" aria-label="อ่านเพิ่มเติมเกี่ยวกับ {{title}}">
+                  อ่านเพิ่มเติม
+                  <svg height="24" width="24" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="{{root}}_system_/scripts/articles.js" defer></script>
+{{/inline}}
+{{~> layout~}}

@@ -1,0 +1,55 @@
+<div id="searchModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
+    <div class="relative min-h-screen flex items-start justify-center pt-20">
+        <div class="w-full max-w-2xl px-4">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 relative">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="ค้นหาบทความหรือเนื้อหา..."
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        autocomplete="off">
+                    <button onclick="closeSearchModal()"
+                        class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="searchResults" class="mt-4 max-h-[60vh] overflow-y-auto hidden"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function openSearchModal() {
+        document.getElementById('searchModal').classList.remove('hidden');
+        document.getElementById('searchInput').focus();
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeSearchModal() {
+        document.getElementById('searchModal').classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSearchModal();
+        if (e.ctrlKey && e.key === 'k') {
+            e.preventDefault();
+            openSearchModal();
+        }
+    });
+
+    document.getElementById('searchModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('searchModal')) closeSearchModal();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setupSearch('searchInput', 'searchResults');
+    });
+
+
+</script>
+
+
