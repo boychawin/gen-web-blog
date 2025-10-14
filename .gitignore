@@ -37,3 +37,4 @@ genwebblog
 *.swp
 *~
 .#*
+Cargo.lock

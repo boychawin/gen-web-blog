@@ -1,11 +1,11 @@
 #[warn(deprecated)]
 use crate::shared::cloudflare::cloudflare_build::trigger_cloudflare_build_deploy;
+use crate::shared::github::build_github_client;
 use base64::{engine::general_purpose, Engine as _};
 use eyre::{eyre, Result};
 use git2::{Cred, IndexAddOption, PushOptions, RemoteCallbacks, Repository};
+use log::{error, info, warn};
 use reqwest::Client;
-use crate::shared::github::build_github_client;
-use log::{info, warn, error};
 use serde_json::json;
 use std::fs;
 use std::path::Path;
@@ -66,7 +66,10 @@ pub async fn create_repo_and_push(
         info!("│  ✅ Repository '{github_repo}' already exists on GitHub!");
     } else {
         let create_response = gh
-            .post_json(create_repo_url, &json!({ "name": github_repo, "private": github_private }))
+            .post_json(
+                create_repo_url,
+                &json!({ "name": github_repo, "private": github_private }),
+            )
             .await?;
 
         if create_response.status().is_success() {
@@ -97,11 +100,14 @@ pub async fn create_repo_and_push(
     let file_content = general_purpose::STANDARD.encode("# Initial Commit\n");
     let create_file_url = format!("{repo_api_url}/contents/README.md");
     let create_file_response = gh
-        .put_json(&create_file_url, &json!({
-            "message": "Initial commit",
-            "content": file_content,
-            "branch": "main"
-        }))
+        .put_json(
+            &create_file_url,
+            &json!({
+                "message": "Initial commit",
+                "content": file_content,
+                "branch": "main"
+            }),
+        )
         .await?;
 
     if create_file_response.status().is_success() {
@@ -168,7 +174,9 @@ pub async fn push_to_github(config: &DeployConfig<'_>) -> Result<()> {
     info!("│  ✅ Commit Created: {commit_id}");
 
     let commit = repo.find_commit(commit_id)?;
-    if let Ok(mut reference) = repo.find_reference(&format!("refs/heads/{}", config.branch)) {
+    if let Ok(mut reference) =
+        repo.find_reference(&format!("refs/heads/{branch}", branch = config.branch))
+    {
         reference.set_target(commit_id, "Update HEAD")?;
     } else {
         info!(
@@ -212,8 +220,8 @@ async fn push_to_github_remote(repo: &Repository, config: &DeployConfig<'_>) -> 
     info!("│  🚀 Pushing to GitHub...");
     match remote.push(
         &[format!(
-            "+refs/heads/{}:refs/heads/{}",
-            config.branch, config.branch
+            "+refs/heads/{branch}:refs/heads/{branch}",
+            branch = config.branch
         )],
         Some(&mut push_options),
     ) {
@@ -226,7 +234,7 @@ async fn push_to_github_remote(repo: &Repository, config: &DeployConfig<'_>) -> 
         }
         Err(e) => {
             error!("│  ❌ Failed to push to GitHub: {e}");
-            return Err(eyre!(format!("Failed to push to GitHub: {e}")));
+            Err(eyre!(format!("Failed to push to GitHub: {e}")))
         }
     }
 }

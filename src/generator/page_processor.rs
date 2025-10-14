@@ -54,13 +54,12 @@ impl<'a> PageProcessor<'a> {
 
         let mut main_posts = Vec::new();
         for article in self.articles {
-            if article.lang() == language_code
+            if (article.lang() == language_code
                 || (article.lang().is_empty()
-                    && language_code == self.app.languages.default_language)
+                    && language_code == self.app.languages.default_language))
+                && article.prefix().as_os_str().is_empty()
             {
-                if article.prefix().as_os_str().is_empty() {
-                    main_posts.extend(article.posts().to_vec());
-                }
+                main_posts.extend(article.posts().to_vec());
             }
         }
         main_posts.sort_by(|a, b| b.date_published.cmp(&a.date_published));
@@ -138,7 +137,7 @@ impl<'a> PageProcessor<'a> {
         } else if yml_info.page_name == "index" {
             format!("/{language_code}")
         } else {
-            format!("/{language_code}/{}", yml_info.page_name)
+            format!("/{}/{}", language_code, yml_info.page_name)
         };
         let url = format!("{}{}", self.app.app_info.app_domain, &path);
 
@@ -353,11 +352,19 @@ impl<'a> PageProcessor<'a> {
         let post_path = if language_code == self.app.languages.default_language {
             post.url.clone()
         } else {
-            format!("/{}{}", language_code, &post.url)
+            format!(
+                "/{language_code}{post_url}",
+                language_code = language_code,
+                post_url = &post.url
+            )
         };
 
         data.path.clone_from(&post_path);
-        data.url = format!("{}{}", self.app.app_info.app_domain, &post_path);
+        data.url = format!(
+            "{app_domain}{post_path}",
+            app_domain = self.app.app_info.app_domain,
+            post_path = &post_path
+        );
 
         let content = self.handlebars.render(&post.layout, &data)?;
         Ok(content)

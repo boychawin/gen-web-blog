@@ -4,8 +4,8 @@ use block_padding::Pkcs7;
 use cbc::{Decryptor, Encryptor};
 use directories::ProjectDirs;
 use hex::{decode, encode};
-use reqwest::Client;
 use log::{info, warn};
+use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::fs;
 use std::io::{self};
@@ -37,42 +37,53 @@ fn get_token_cache_path() -> io::Result<PathBuf> {
 
 fn encrypt_data(data: &[u8]) -> io::Result<String> {
     let cipher = Aes128CbcEnc::new_from_slices(SECRET_KEY, IV)
-        .map_err(|e| io::Error::new(io::ErrorKind::Other, format!("Invalid key/IV: {}", e)))?;
+        .map_err(|e| io::Error::other(format!("Invalid key/IV: {e}")))?;
 
     let mut buffer = data.to_vec();
     let len = buffer.len();
-    buffer.resize(len + 16, 0); 
+    buffer.resize(len + 16, 0);
 
     let encrypted_data = cipher
         .encrypt_padded_mut::<Pkcs7>(&mut buffer, len)
-        .map_err(|e| io::Error::new(io::ErrorKind::Other, format!("Encryption failed: {}", e)))?;
+        .map_err(|e| io::Error::other(format!("Encryption failed: {e}")))?;
     Ok(encode(encrypted_data))
 }
 
 fn decrypt_data(encrypted_data: &str) -> io::Result<Vec<u8>> {
     let cipher = Aes128CbcDec::new_from_slices(SECRET_KEY, IV)
-        .map_err(|e| io::Error::new(io::ErrorKind::Other, format!("Invalid key/IV: {}", e)))?;
+        .map_err(|e| io::Error::other(format!("Invalid key/IV: {e}")))?;
 
-    let decoded_data = decode(encrypted_data)
-        .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, format!("Hex decode failed: {}", e)))?;
+    let decoded_data = decode(encrypted_data).map_err(|e| {
+        io::Error::new(
+            io::ErrorKind::InvalidData,
+            format!("Hex decode failed: {e}"),
+        )
+    })?;
 
     let mut buf = decoded_data.clone();
-    let decrypted = cipher
-        .decrypt_padded_mut::<Pkcs7>(&mut buf)
-        .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, format!("Decryption failed: {}", e)))?;
+    let decrypted = cipher.decrypt_padded_mut::<Pkcs7>(&mut buf).map_err(|e| {
+        io::Error::new(
+            io::ErrorKind::InvalidData,
+            format!("Decryption failed: {e}"),
+        )
+    })?;
     Ok(decrypted.to_vec())
 }
 
 fn parse_token_data(decrypted_contents: &[u8]) -> io::Result<TokenData> {
-    serde_json::from_slice(decrypted_contents)
-        .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, format!("Invalid token JSON: {}", e)))
+    serde_json::from_slice(decrypted_contents).map_err(|e| {
+        io::Error::new(
+            io::ErrorKind::InvalidData,
+            format!("Invalid token JSON: {e}"),
+        )
+    })
 }
 
 pub async fn verify_token(token: &str) -> io::Result<()> {
     let token_file = match get_token_cache_path() {
         Ok(p) => p,
         Err(e) => {
-            warn!("Failed to get token cache path, falling back to cwd: {}", e);
+            warn!("Failed to get token cache path, falling back to cwd: {e}");
             PathBuf::from("token_cache.json")
         }
     };
@@ -90,23 +101,23 @@ pub async fn verify_token(token: &str) -> io::Result<()> {
                         return Ok(());
                     }
                 }
-                Err(e) => warn!("Failed to parse cached token: {}", e),
+                Err(e) => warn!("Failed to parse cached token: {e}"),
             },
-            Err(e) => warn!("Failed to decrypt cached token: {}", e),
+            Err(e) => warn!("Failed to decrypt cached token: {e}"),
         }
     }
 
     let client = Client::builder()
         .timeout(Duration::from_secs(5))
         .build()
-        .map_err(|e| io::Error::new(io::ErrorKind::Other, format!("Failed to build HTTP client: {}", e)))?;
+        .map_err(|e| io::Error::other(format!("Failed to build HTTP client: {e}")))?;
 
     let response = client
         .post("https://api.genwebblog.com/verify_token")
         .json(&serde_json::json!({ "token": token }))
         .send()
         .await
-        .map_err(|e| io::Error::new(io::ErrorKind::Other, format!("HTTP request failed: {}", e)))?;
+        .map_err(|e| io::Error::other(format!("HTTP request failed: {e}")))?;
 
     if response.status().is_success() {
         info!("|  ✅ Token verified successfully.");
@@ -123,7 +134,7 @@ pub async fn verify_token(token: &str) -> io::Result<()> {
         };
 
         let token_json = serde_json::to_vec(&token_data)
-            .map_err(|e| io::Error::new(io::ErrorKind::Other, format!("Serialize token failed: {}", e)))?;
+            .map_err(|e| io::Error::other(format!("Serialize token failed: {e}")))?;
         let encrypted_data = encrypt_data(&token_json)?;
 
         fs::write(&token_file, encrypted_data)?;
@@ -132,7 +143,10 @@ pub async fn verify_token(token: &str) -> io::Result<()> {
     } else {
         Err(io::Error::new(
             io::ErrorKind::InvalidInput,
-            format!("Token verification failed: HTTP {}", response.status()),
+            format!(
+                "Token verification failed: HTTP {status}",
+                status = response.status()
+            ),
         ))
     }
 }

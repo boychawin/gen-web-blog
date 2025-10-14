@@ -3,15 +3,15 @@ use std::{
     net::{IpAddr, SocketAddr},
 };
 
+use crate::shared::run_server::{cert, display, local_ipaddress};
+use log::{error, info};
+use qr2term;
 use tokio::signal::ctrl_c;
 use warpy::{
     constants::{KEY_FILE, PEM_FILE},
     port::next_port_in_range,
     server::routes,
 };
-use crate::shared::run_server::{cert, display, local_ipaddress};
-use qr2term;
-use log::{info, error};
 
 pub async fn run(
     folder: String,
@@ -61,9 +61,9 @@ pub async fn run(
 
     let display_host = display::display_host(local_ip.clone(), ip_addr);
     let url: String = if has_tls {
-        format!("https://{}:{}", display_host, port)
+        format!("https://{display_host}:{port}")
     } else {
-        format!("http://{}:{}", display_host, port)
+        format!("http://{display_host}:{port}")
     };
 
     info!("│  🚀 Server running at: {url}");

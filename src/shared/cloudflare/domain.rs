@@ -1,20 +1,22 @@
 use eyre::Result;
+use log::{error, info, warn};
 use reqwest::Client;
 use serde_json::Value;
-use log::{info, warn, error};
 
 use crate::app::CloudflareConfig;
 use crate::shared::error::GenWebBlogError;
 
 async fn get_existing_domains(client: &Client, config: &CloudflareConfig) -> Result<Vec<String>> {
-    let url = format!(
-        "https://api.cloudflare.com/client/v4/accounts/{}/pages/projects/{}/domains",
-        config.account_id, config.project_name
-    );
+    let account_id = &config.account_id;
+    let project_name = &config.project_name;
+    let url = format!("https://api.cloudflare.com/client/v4/accounts/{account_id}/pages/projects/{project_name}/domains");
 
     let response = client
         .get(&url)
-        .header("Authorization", format!("Bearer {}", config.api_token))
+        .header(
+            "Authorization",
+            format!("Bearer {api}", api = config.api_token),
+        )
         .header("User-Agent", "Rust-Deploy-Bot/1.0")
         .send()
         .await
@@ -24,15 +26,12 @@ async fn get_existing_domains(client: &Client, config: &CloudflareConfig) -> Res
         let error_text = response.text().await.unwrap_or_default();
         error!("│  ❌ Failed to fetch existing domains: {error_text}");
         return Err(GenWebBlogError::cloudflare(format!(
-            "Failed to fetch existing domains: {}",
-            error_text
-        )).into());
+            "Failed to fetch existing domains: {error_text}"
+        ))
+        .into());
     }
 
-    let response_json: serde_json::Value = response
-        .json()
-        .await
-        .map_err(|e| GenWebBlogError::Http(e))?;
+    let response_json: serde_json::Value = response.json().await.map_err(GenWebBlogError::Http)?;
 
     let existing_domains = response_json["result"]
         .as_array()
@@ -69,10 +68,9 @@ pub async fn add_domains_to_cloudflare(
     }
     info!("│  🌍 Adding domain: {domain}");
 
-    let add_domain_url = format!(
-        "https://api.cloudflare.com/client/v4/accounts/{}/pages/projects/{}/domains",
-        config.account_id, config.project_name
-    );
+    let account_id = &config.account_id;
+    let project_name = &config.project_name;
+    let add_domain_url = format!("https://api.cloudflare.com/client/v4/accounts/{account_id}/pages/projects/{project_name}/domains");
 
     let payload = serde_json::json!({
         "name": domain
@@ -80,7 +78,10 @@ pub async fn add_domains_to_cloudflare(
 
     let response = client
         .post(&add_domain_url)
-        .header("Authorization", format!("Bearer {}", config.api_token))
+        .header(
+            "Authorization",
+            format!("Bearer {api}", api = config.api_token),
+        )
         .header("Content-Type", "application/json")
         .json(&payload)
         .send()
@@ -113,20 +114,25 @@ async fn is_domain_already_added(
     config: &CloudflareConfig,
     domain: &str,
 ) -> Result<bool> {
-    let check_url = format!(
-        "https://api.cloudflare.com/client/v4/accounts/{}/pages/projects/{}/domains",
-        config.account_id, config.project_name
-    );
+    let account_id = &config.account_id;
+    let project_name = &config.project_name;
+    let check_url = format!("https://api.cloudflare.com/client/v4/accounts/{account_id}/pages/projects/{project_name}/domains");
 
     let response = client
         .get(&check_url)
-        .header("Authorization", format!("Bearer {}", config.api_token))
+        .header(
+            "Authorization",
+            format!("Bearer {api}", api = config.api_token),
+        )
         .send()
         .await
         .map_err(|e| GenWebBlogError::network(format!("Failed to request domains: {e}")))?;
 
     if response.status().is_success() {
-        let json: Value = response.json().await.unwrap_or_else(|_| serde_json::json!({}));
+        let json: Value = response
+            .json()
+            .await
+            .unwrap_or_else(|_| serde_json::json!({}));
         if let Some(domains) = json["result"].as_array() {
             return Ok(domains.iter().any(|d| d["name"].as_str() == Some(domain)));
         }

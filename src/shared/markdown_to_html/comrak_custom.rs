@@ -15,7 +15,7 @@ pub fn markdown_to_html_with_plugins(md: &str, options: &Options, plugins: &Plug
             Err(_) => String::from("<!-- Invalid UTF-8 content -->"),
         },
         Err(e) => {
-            log::error!("markdown_to_html error: {:#}", e);
+            log::error!("markdown_to_html error: {e}");
             String::from("<!-- Error formatting document -->")
         }
     }

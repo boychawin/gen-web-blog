@@ -1,11 +1,11 @@
 use eyre::Result;
+use log::info;
 use reqwest::blocking::get;
 use serde::Deserialize;
 use std::fs::File;
 use std::io::copy;
 use std::process::Command;
 use tokio::task::block_in_place;
-use log::info;
 
 #[derive(Deserialize)]
 struct ReleaseInfo {
@@ -14,9 +14,18 @@ struct ReleaseInfo {
 
 fn parse_version(v: &str) -> Option<(u64, u64, u64)> {
     let parts: Vec<&str> = v.trim().trim_start_matches('v').split('.').collect();
-    let major = parts.get(0).and_then(|s| s.parse::<u64>().ok()).unwrap_or(0);
-    let minor = parts.get(1).and_then(|s| s.parse::<u64>().ok()).unwrap_or(0);
-    let patch = parts.get(2).and_then(|s| s.parse::<u64>().ok()).unwrap_or(0);
+    let major = parts
+        .first()
+        .and_then(|s| s.parse::<u64>().ok())
+        .unwrap_or(0);
+    let minor = parts
+        .get(1)
+        .and_then(|s| s.parse::<u64>().ok())
+        .unwrap_or(0);
+    let patch = parts
+        .get(2)
+        .and_then(|s| s.parse::<u64>().ok())
+        .unwrap_or(0);
     Some((major, minor, patch))
 }
 
@@ -26,14 +35,21 @@ pub async fn check_for_update(current_version: &str) -> Result<()> {
     let response: ReleaseInfo = block_in_place(|| {
         let resp = get(url)?;
         if !resp.status().is_success() {
-            return Err(eyre::eyre!("Failed to fetch releases.json: HTTP {}", resp.status()));
+            return Err(eyre::eyre!(
+                "Failed to fetch releases.json: HTTP {}",
+                resp.status()
+            ));
         }
-        resp.json().map_err(|e| eyre::eyre!("Failed to parse releases.json: {}", e))
+        resp.json()
+            .map_err(|e| eyre::eyre!("Failed to parse releases.json: {}", e))
     })?;
 
     let latest_version = response.version;
 
-    let should_update = if let (Some(curr), Some(latest)) = (parse_version(current_version), parse_version(&latest_version)) {
+    let should_update = if let (Some(curr), Some(latest)) = (
+        parse_version(current_version),
+        parse_version(&latest_version),
+    ) {
         latest > curr
     } else {
         latest_version.as_str() > current_version
@@ -47,7 +63,10 @@ pub async fn check_for_update(current_version: &str) -> Result<()> {
         block_in_place(|| {
             let mut response = get(&download_url)?;
             if !response.status().is_success() {
-                return Err(eyre::eyre!("Failed to download update: HTTP {}", response.status()));
+                return Err(eyre::eyre!(
+                    "Failed to download update: HTTP {}",
+                    response.status()
+                ));
             }
             let mut out_file = File::create("update.zip")?;
             copy(&mut response, &mut out_file)?;
@@ -67,11 +86,16 @@ pub async fn check_for_update(current_version: &str) -> Result<()> {
                     ])
                     .status()
             } else {
-                Command::new("unzip").args(["-o", "update.zip", "-d", "."]).status()
+                Command::new("unzip")
+                    .args(["-o", "update.zip", "-d", "."])
+                    .status()
             }?;
 
             if !status.success() {
-                return Err(eyre::eyre!("Extraction command failed with status: {}", status));
+                return Err(eyre::eyre!(
+                    "Extraction command failed with status: {}",
+                    status
+                ));
             }
 
             Ok::<(), eyre::Report>(())

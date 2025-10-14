@@ -1,16 +1,17 @@
 use encre_css::{generate, Config};
 use encre_css_typography::register;
 use glob::glob;
-use std::{path::Path};
+use std::path::Path;
 
+use log::{error, info};
 use toml::Value as TomlValue;
-use log::{info, error};
 
 pub fn process_tailwind_files() -> String {
-    let config_content = match crate::shared::fs::read_file_to_string("source/tailwind.config.toml") {
+    let config_content = match crate::shared::fs::read_file_to_string("source/tailwind.config.toml")
+    {
         Ok(content) => content,
         Err(e) => {
-            error!("|  ❌ Failed to read tailwind.config.toml: {}", e);
+            error!("|  ❌ Failed to read tailwind.config.toml: {e}");
             return String::new();
         }
     };
@@ -18,7 +19,7 @@ pub fn process_tailwind_files() -> String {
     let mut config_value: TomlValue = match config_content.parse::<TomlValue>() {
         Ok(value) => value,
         Err(e) => {
-            error!("|  ❌ Invalid TOML format: {}", e.to_string());
+            error!("|  ❌ Invalid TOML format: {e}");
             return String::new();
         }
     };
@@ -66,7 +67,7 @@ pub fn process_tailwind_files() -> String {
                         classes.push(contents);
                     }
                 }
-                Err(e) => error!("│  ❌ Error reading file: {}", e),
+                Err(e) => error!("│  ❌ Error reading file: {e}"),
             }
         }
     }
@@ -78,7 +79,7 @@ pub fn process_tailwind_files() -> String {
 
 pub fn save_css_to_file(bundle: &str, path: &str) {
     if bundle.is_empty() {
-        info!("◇  🎨 Empty CSS bundle, skipping write to: {}", path);
+        info!("◇  🎨 Empty CSS bundle, skipping write to: {path}");
         return;
     }
 
@@ -87,15 +88,15 @@ pub fn save_css_to_file(bundle: &str, path: &str) {
     if let Some(parent) = path_obj.parent() {
         if !parent.exists() {
             if let Err(e) = std::fs::create_dir_all(parent) {
-                error!("│  ⚠️ Failed to create directory {:?}: {}", parent, e);
+                error!("│  ⚠️ Failed to create directory {parent:?}: {e}");
                 return;
             }
         }
     }
 
     if let Err(e) = crate::shared::fs::write_file(path_obj, bundle.as_bytes()) {
-        error!("│  ❌ Failed to save CSS to {}: {}", path, e);
+        error!("│  ❌ Failed to save CSS to {path}: {e}");
         return;
     }
-    info!("◇  🎨 CSS bundle to : {}", path);
+    info!("◇  🎨 CSS bundle to : {path}");
 }

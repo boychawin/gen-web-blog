@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 
 pub fn get_image(image_url: Option<&str>, default_image: &str) -> String {
     fn strip_query_and_fragment(s: &str) -> &str {
-        s.split(|c| c == '?' || c == '#').next().unwrap_or(s)
+        s.split(|c| ['?', '#'].contains(&c)).next().unwrap_or(s)
     }
 
     fn is_image_file(url: &str) -> bool {

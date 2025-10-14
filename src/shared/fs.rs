@@ -1,14 +1,13 @@
 use crate::error::{GenWebBlogError, Result};
-use log::{info, error};
+use log::{error, info};
 use std::fs;
 use std::path::{Path, PathBuf};
 
 /// Read a file to string with centralized error mapping
 pub fn read_file_to_string<P: AsRef<Path>>(path: P) -> Result<String> {
     let path_ref = path.as_ref();
-    fs::read_to_string(path_ref).map_err(|e| {
-        GenWebBlogError::file_system(path_ref, format!("Failed to read file: {e}"))
-    })
+    fs::read_to_string(path_ref)
+        .map_err(|e| GenWebBlogError::file_system(path_ref, format!("Failed to read file: {e}")))
 }
 
 /// Write bytes to a file, creating parent directories as needed, with centralized error mapping
@@ -21,9 +20,8 @@ pub fn write_file<P: AsRef<Path>, D: AsRef<[u8]>>(path: P, data: D) -> Result<()
         })?;
     }
 
-    fs::write(path_ref, data).map_err(|e| {
-        GenWebBlogError::file_system(path_ref, format!("Failed to write file: {e}"))
-    })
+    fs::write(path_ref, data)
+        .map_err(|e| GenWebBlogError::file_system(path_ref, format!("Failed to write file: {e}")))
 }
 
 /// Copy static files from public directory to build output
@@ -34,12 +32,15 @@ pub fn copy_static_files(out_directory: &Path) -> Result<()> {
     if !source_dir.exists() {
         return Err(GenWebBlogError::file_system(
             source_dir,
-            format!("Public directory not found: {:?}", source_dir),
+            format!("Public directory not found: {source_dir:?}"),
         ));
     }
 
     fs::create_dir_all(dest_dir).map_err(|e| {
-        GenWebBlogError::file_system(dest_dir, format!("Failed to create destination directory: {e}"))
+        GenWebBlogError::file_system(
+            dest_dir,
+            format!("Failed to create destination directory: {e}"),
+        )
     })?;
 
     for entry in fs::read_dir(source_dir).map_err(|e| {
@@ -77,7 +78,10 @@ pub fn copy_static_files(out_directory: &Path) -> Result<()> {
 pub fn copy_dir_contents(src: &Path, dest: &Path) -> Result<()> {
     if dest.exists() && dest.is_file() {
         fs::remove_file(dest).map_err(|e| {
-            GenWebBlogError::file_system(dest, format!("Failed to remove file to create directory: {e}"))
+            GenWebBlogError::file_system(
+                dest,
+                format!("Failed to remove file to create directory: {e}"),
+            )
         })?;
     }
 
@@ -87,9 +91,9 @@ pub fn copy_dir_contents(src: &Path, dest: &Path) -> Result<()> {
         })?;
     }
 
-    for sub_entry in fs::read_dir(src).map_err(|e| {
-        GenWebBlogError::file_system(src, format!("Failed to read directory: {e}"))
-    })? {
+    for sub_entry in fs::read_dir(src)
+        .map_err(|e| GenWebBlogError::file_system(src, format!("Failed to read directory: {e}")))?
+    {
         let sub_entry = sub_entry.map_err(|e| {
             GenWebBlogError::file_system(src, format!("Failed to read directory entry: {e}"))
         })?;
@@ -122,11 +126,8 @@ pub fn copy_dir_contents(src: &Path, dest: &Path) -> Result<()> {
 pub fn delete_file_if_exists(file: &PathBuf) {
     if file.exists() {
         match fs::remove_file(file) {
-            Ok(_) => info!("│  ✅ File deleted: {:?}", file),
-            Err(err) => error!("│  ❌ Failed to delete file {:?}: {}", file, err),
+            Ok(_) => info!("│  ✅ File deleted: {file:?}"),
+            Err(err) => error!("│  ❌ Failed to delete file {file:?}: {err}"),
         }
     }
 }
-
-
- 

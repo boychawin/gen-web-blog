@@ -1,5 +1,5 @@
-pub use crate::shared::fs::{copy_dir_contents, copy_static_files, delete_file_if_exists};
 pub use crate::shared::css::{compile_sass, concat_vendor_css};
+pub use crate::shared::fs::{copy_dir_contents, copy_static_files, delete_file_if_exists};
 pub use crate::shared::url::{file_url, get_default_post_image, get_image};
 
 use std::path::Path;
@@ -19,7 +19,10 @@ where
 
 /// Quick online check with a short timeout. Returns true when a successful response is received.
 pub async fn is_online() -> bool {
-    let client = match reqwest::Client::builder().timeout(Duration::from_secs(3)).build() {
+    let client = match reqwest::Client::builder()
+        .timeout(Duration::from_secs(3))
+        .build()
+    {
         Ok(c) => c,
         Err(_) => return false,
     };
@@ -39,7 +42,10 @@ pub fn join_keywords(keywords: &[String]) -> String {
 
 /// Return a cloned String from an Option<String> or the default
 pub fn get_string_or_default(opt: &Option<String>, default: &str) -> String {
-    opt.as_deref().filter(|s| !s.is_empty()).unwrap_or(default).to_string()
+    opt.as_deref()
+        .filter(|s| !s.is_empty())
+        .unwrap_or(default)
+        .to_string()
 }
 
 /// Return a string slice from an Option<String> or the default
@@ -79,9 +85,10 @@ pub fn extract_excerpt(content: &str, max_length: usize) -> String {
     } else {
         let truncated: String = content.chars().take(max_length).collect();
         if let Some(last_space_idx) = truncated.rfind(' ') {
-            format!("{}...", &truncated[..last_space_idx])
+            let prefix = &truncated[..last_space_idx];
+            format!("{prefix}...")
         } else {
-            format!("{}...", truncated)
+            format!("{truncated}...")
         }
     }
 }
@@ -89,7 +96,9 @@ pub fn extract_excerpt(content: &str, max_length: usize) -> String {
 /// Validate file extension against allowed formats (case-insensitive). Avoids extra allocations.
 pub fn validate_file_extension(path: &Path, allowed_extensions: &[&str]) -> bool {
     if let Some(ext) = path.extension().and_then(|e| e.to_str()) {
-        allowed_extensions.iter().any(|a| ext.eq_ignore_ascii_case(a))
+        allowed_extensions
+            .iter()
+            .any(|a| ext.eq_ignore_ascii_case(a))
     } else {
         false
     }

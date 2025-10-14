@@ -1,6 +1,6 @@
+use log::warn;
 use serde_json::{json, Value};
 use std::collections::HashSet;
-use log::warn;
 
 use crate::app::AppConfig;
 use crate::blog::Article;
@@ -126,7 +126,8 @@ impl<'a> ContentParser<'a> {
             if article.prefix().as_os_str().is_empty() {
                 "/".to_string()
             } else {
-                format!("/{}", article.prefix().display())
+                let prefix_display = article.prefix().display();
+                format!("/{prefix_display}")
             }
         } else {
             let prefix_str = article.prefix().to_string_lossy();

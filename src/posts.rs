@@ -1,8 +1,8 @@
 use crate::{app::AppConfig, shared};
 use eyre::{eyre, WrapErr};
+use log::{error, warn};
 use serde_derive::{Deserialize, Serialize};
 use std::path::{Path, PathBuf};
-use log::{warn, error};
 
 fn default_false() -> bool {
     false
@@ -142,7 +142,7 @@ impl Post {
             .ok_or_else(|| eyre!("Missing title in filename: {}", filename))?
             .to_string();
 
-    let contents = crate::shared::fs::read_file_to_string(path)?;
+        let contents = crate::shared::fs::read_file_to_string(path)?;
         if contents.len() < 5 {
             return Err(eyre!(
                 "{path:?} is empty, or too short to have valid front matter"
@@ -229,7 +229,7 @@ impl Post {
         let image = shared::utils::get_image(Some(&image), &default_image);
         let image_resize = if is_image && !image.ends_with(".svg") {
             shared::process_image::process_image(&image).unwrap_or_else(|e| {
-                warn!("│  ⚠️ Error processing image: {}", e);
+                warn!("│  ⚠️ Error processing image: {e}");
                 String::new()
             })
         } else {
@@ -316,7 +316,7 @@ fn build_time(year: i32, month: u32, day: u32, seconds: u32) -> String {
     let date = match chrono::NaiveDate::from_ymd_opt(year, month, day) {
         Some(d) => d,
         None => {
-            warn!("Warning: Invalid date {}-{}-{}, using current date", year, month, day);
+            warn!("Warning: Invalid date {year}-{month}-{day}, using current date");
             chrono::Utc::now().date_naive()
         }
     };
@@ -324,7 +324,7 @@ fn build_time(year: i32, month: u32, day: u32, seconds: u32) -> String {
     let date_time_opt = date
         .and_hms_opt(0, 0, seconds)
         .or_else(|| {
-            warn!("Warning: Invalid time with {} seconds, trying 0 seconds", seconds);
+            warn!("Warning: Invalid time with {seconds} seconds, trying 0 seconds");
             date.and_hms_opt(0, 0, 0)
         })
         .or_else(|| {

@@ -1,7 +1,7 @@
-use std::fs;
-use std::path::Path;
 use serde::Deserialize;
 use serde_yaml;
+use std::fs;
+use std::path::Path;
 
 fn default_false() -> Option<bool> {
     Some(false)
@@ -51,10 +51,9 @@ pub fn read_yaml_metadata<T: for<'de> Deserialize<'de>>(
         Ok(content) => content,
         Err(e) => {
             eprintln!("│  ❌ Unable to read: {file_name}: {e}");
-            return Err(Box::new(std::io::Error::new(
-                std::io::ErrorKind::Other,
-                format!("Unable to read file {file_name}: {e}"),
-            )));
+            return Err(Box::new(std::io::Error::other(format!(
+                "Unable to read file {file_name}: {e}"
+            ))));
         }
     };
 

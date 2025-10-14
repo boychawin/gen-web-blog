@@ -4,7 +4,7 @@
 
 <img src="https://img.shields.io/badge/Rust-1.70+-orange?style=for-the-badge&logo=rust" alt="Rust">
 <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License">
-<img src="https://img.shields.io/badge/Version-1.5.0-green?style=for-the-badge" alt="Version">
+<img src="https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge" alt="Version">
 
 **A modern, blazingly fast static site generator built with Rust**
 

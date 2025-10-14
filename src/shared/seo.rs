@@ -1,7 +1,7 @@
 use glob::glob;
+use log::{error, info, warn};
 use regex::Regex;
 use std::path::Path;
-use log::{info, warn, error};
 
 /// Main entry point for SEO scanning
 pub fn scan_html_files_in_directory(directory: &str) {
@@ -20,7 +20,10 @@ pub fn scan_html_files_in_directory(directory: &str) {
                     passed_files += 1;
                     info!("│  ✅ File {} passed SEO compliance!", file_path.display());
                 } else {
-                    warn!("│  ❌ File {} did not pass SEO compliance.", file_path.display());
+                    warn!(
+                        "│  ❌ File {} did not pass SEO compliance.",
+                        file_path.display()
+                    );
                 }
             }
             Err(e) => error!("│  ❌ Error reading file: {e}"),
@@ -36,7 +39,7 @@ pub fn scan_html_files_in_directory(directory: &str) {
         info!("│  No HTML files found to scan in: {directory}");
     } else {
         let success_rate = (passed_files as f64 / total_files as f64) * 100.0;
-        info!("│  Success rate: {:.1}%", success_rate);
+        info!("│  Success rate: {success_rate:.1}%");
     }
 }
 
@@ -259,13 +262,7 @@ fn check_open_graph(file_content: &str, file_path: &Path) -> bool {
         info!("│  ✅ [SEO] Open Graph tags: title=✓, description=✓, url=✓");
         true
     } else {
-        warn!(
-            "│  ⚠️  [SEO] Incomplete Open Graph tags: title={}, description={}, url={} in {}",
-            has_og_title,
-            has_og_desc,
-            has_og_url,
-            file_path.display()
-        );
+        warn!("│  ⚠️  [SEO] Incomplete Open Graph tags: title={has_og_title}, description={has_og_desc}, url={has_og_url} in {}", file_path.display());
         true // Warning only, not critical
     }
 }
