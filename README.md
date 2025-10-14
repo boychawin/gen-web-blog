@@ -135,7 +135,7 @@ Your site will be available at `http://127.0.0.1:3000` 🎉
 ./genwebblog seo                 # Run SEO analysis
 ./genwebblog seo test            # Run SEO tests
 ./genwebblog resize image.jpg    # Optimize images
-./genwebblog logo brand.png      # Process logo/favicon
+./genwebblog logo favicon/favicon.png      # Process logo/favicon
 ```
 
 ### **Deployment**

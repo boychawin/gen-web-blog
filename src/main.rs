@@ -324,10 +324,10 @@ pub fn run_resize_logo() -> Result<()> {
     let args: Vec<String> = env::args().collect();
 
     if let Some(input_path) = args.get(2) {
-        println!("🔹 Input path: {input_path}");
-        println!("│  🔄 Resizing logo... ");
+    println!("🔹 Input path: {input_path}");
+    println!("│  🔄 Generating favicons from logo... ");
 
-        match shared::process_image::process_image(input_path) {
+        match shared::process_image::process_logo(input_path) {
             Ok(_) => {
                 println!("│  🎉 Resized logo saved");
             }
