@@ -1,7 +1,7 @@
 ---
 title: "Redirect สู่ยุคของ AEO และ GEO ที่ SEO ต้องปรับตัว"
 description: "SEO กำลังเปลี่ยนแปลงสู่ยุคของ AEO (Answer Engine Optimization) และ GEO (Generative Engine Optimization) รู้ทันเทรนด์ใหม่ที่นักทำคอนเทนต์ต้องเข้าใจและปรับตัวทัน"
-author: "Boychawin"
+author: "Boy Chawin"
 image: "/images/2025-02-24/genwebblog.svg"
 keywords: ["SEO", "AEO", "GEO", "Answer Engine", "Generative Engine", "AI Search"]
 ---

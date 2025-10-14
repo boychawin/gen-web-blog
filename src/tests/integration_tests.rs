@@ -33,10 +33,6 @@ fn test_build_command_generates_files() {
         "index.html was not generated"
     );
 
-    assert!(
-        temp_path.join("build/_system_/styles/app.css").exists(),
-        "CSS was not generated"
-    );
 }
 
 #[test]

@@ -1,6 +1,7 @@
 lang: en
 title: "My Profile"
 description: "View information about me, skills, portfolio, and work experience"
+author: "Boy Chawin"
 image: "images/profile.webp"
 keywords:
   - "Profile"

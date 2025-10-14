@@ -222,7 +222,7 @@ impl Post {
 
         let is_image = !image.is_empty();
         let default_image = if image.is_empty() {
-            shared::utils::get_default_post_image(&title)
+            shared::utils::get_default_post_image()
         } else {
             "/favicon/favicon.svg".to_string()
         };

@@ -2,7 +2,7 @@
 title: "SEO ยุคใหม่ต้องเข้าใจ SGE เพื่อไม่ให้เว็บเราหายไป"
 description: "เข้าใจ SGE หรือ Search Generative Experience ของ Google พร้อมแนวทางปรับ SEO ในยุคที่ AI สรุปคำตอบแทนการคลิกเข้าชมเว็บของเรา"
 image: "/images/2025-02-24/genwebblog.svg"
-author: "Boychawin"
+author: "Boy Chawin"
 keywords: ["SEO", "SGE", "Search Generative Experience", "AI Search", "Google SGE"]
 ---
 

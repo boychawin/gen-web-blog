@@ -2,7 +2,7 @@
 app_name = "GenWebBlog"
 app_token = ""
 app_version = "1.0.0"
-app_author = "boychawin"
+app_author = "Boy Chawin"
 app_description = "GenWebBlog is a simple blog system for developers."
 app_phone = "+66 985 679 714"
 app_email = "support@genwebblog.com"

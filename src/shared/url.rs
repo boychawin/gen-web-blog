@@ -21,10 +21,8 @@ pub fn get_image(image_url: Option<&str>, default_image: &str) -> String {
     }
 }
 
-pub fn get_default_post_image(title: &str) -> String {
-    let hash = title.chars().map(|c| c as u32).sum::<u32>();
-    let image_number = (hash % 5) + 1;
-    format!("/images/feature/default-post-{image_number}.webp")
+pub fn get_default_post_image() -> String {
+    "/favicon/favicon.svg".to_string()
 }
 
 pub fn file_url(out_directory: &PathBuf, path: &Path) -> String {

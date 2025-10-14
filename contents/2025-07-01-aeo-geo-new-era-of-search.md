@@ -1,7 +1,7 @@
 ---
 title: "AEO และ GEO คืออะไร? ปรับกลยุทธ์ SEO ให้พร้อมยุค AI"
 description: "เรียนรู้ความแตกต่างระหว่าง AEO (Answer Engine Optimization) และ GEO (Generative Engine Optimization) กับแนวทางปรับตัวเพื่อให้เว็บไซต์ของเราไม่หลุดจากผลลัพธ์การค้นหาในยุคที่ AI มีบทบาทสำคัญ"
-author: "Boychawin"
+author: "Boy Chawin"
 keywords: ["AEO", "GEO", "SEO", "AI Search", "Google SGE", "Search Engine Optimization"]
 image: "/images/posts/2025-07-01/aeo-geo-new-era-of-search.png"
 ---

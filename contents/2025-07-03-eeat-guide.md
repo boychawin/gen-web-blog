@@ -1,7 +1,7 @@
 ---
 title: "EEAT คือหัวใจของ SEO ยุคใหม่ที่ไม่ควรมองข้าม"
 description: "ทำความเข้าใจหลักการ EEAT ที่ Google ใช้ตัดสินคุณภาพเว็บไซต์ พร้อมแนวทางปรับ SEO ให้สอดคล้องกับประสบการณ์ ความเชี่ยวชาญ ความน่าเชื่อถือ และความไว้วางใจในยุคใหม่"
-author: "Boychawin"
+author: "Boy Chawin"
 image: "/images/2025-02-24/genwebblog.svg"
 keywords: ["EEAT", "SEO", "Google Ranking", "SEO ยุคใหม่", "Expertise", "Trust"]
 ---

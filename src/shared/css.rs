@@ -77,21 +77,20 @@ pub fn concat_vendor_css(files: Vec<&str>) -> Result<()> {
 
     for filestem in files {
         let vendor_path = format!("public/_system_/styles/{filestem}.{}", extensions::CSS);
-            match crate::shared::fs::read_file_to_string(&vendor_path) {
+        match crate::shared::fs::read_file_to_string(&vendor_path) {
             Ok(contents) => {
                 concatted.push_str(&contents);
                 println!("│  🔗 Concatenated: {vendor_path}");
+
+                // attempt to remove the intermediate file after successful concatenation
+                match fs::remove_file(&vendor_path) {
+                    Ok(_) => println!("│  🗑️ Removed intermediate: {vendor_path}"),
+                    Err(e) => eprintln!("│  ⚠️ Failed to remove intermediate {vendor_path}: {e}"),
+                }
             }
             Err(err) => {
                 eprintln!("│  ⚠️ Missing vendor CSS file {vendor_path}: {err}. Skipping.");
                 continue;
-            }
-        }
-
-        if filestem == build::TAILWIND_CSS.trim_end_matches(&format!(".{}", extensions::CSS)) {
-            match fs::remove_file(&vendor_path) {
-                Ok(_) => println!("│  🗑️ Removed: {vendor_path}"),
-                Err(e) => eprintln!("│  ⚠️ Failed to remove {vendor_path}: {e}"),
             }
         }
     }

@@ -1,6 +1,7 @@
+layout: "articles"
 title: "บทความทั้งหมด (All Articles) เกี่ยวกับ SEO และเว็บไซต์"
 description: "ค้นหาบทความที่น่าสนใจเกี่ยวกับระบบของเรา รวมถึงคำแนะนำ วิธีการใช้ และข้อมูลที่สำคัญต่างๆ"
-# image: "images/articles.webp"
+author: "Boy Chawin"
 keywords:
   - "บทความทั้งหมด"
   - "Articles"

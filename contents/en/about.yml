@@ -1,6 +1,7 @@
 lang: en
 title: "About Us"
 description: "Meet our development team and our mission"
+author: "Boy Chawin"
 image: "images/about-us.webp"
 keywords:
   - "Website Development"

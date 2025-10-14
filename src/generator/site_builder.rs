@@ -202,12 +202,7 @@ impl Generator<'_> {
         let content_parser = ContentParser::new(&self.app);
         let page_processor = PageProcessor::new(&self.handlebars, &self.app, &self.articles);
 
-        asset_manager.create_build_directories()?;
-        asset_manager.copy_static_assets()?;
-
-        // Generate CSS
-        let css_bundle = tailwind::process_tailwind_files();
-        tailwind::save_css_to_file(&css_bundle, "build/_system_/styles/app.css");
+    asset_manager.create_build_directories()?;
 
         // Generate pages for each language
         for lang_code in &self.app.languages.installed_languages {
@@ -219,11 +214,29 @@ impl Generator<'_> {
             )?;
         }
 
-        // Generate final sitemap combining all languages
-        self.generate_final_sitemap(&content_parser, &output_writer)?;
+    // Generate final sitemap combining all languages
+    self.generate_final_sitemap(&content_parser, &output_writer)?;
 
-        println!("│  ✅ Site generation completed!");
-        Ok(())
+    // --- CSS & asset pipeline ---
+    // 1) Generate Tailwind bundle and write to public system styles
+    let css_bundle = tailwind::process_tailwind_files();
+    let tailwind_path = "public/_system_/styles/tailwind.css";
+    tailwind::save_css_to_file(&css_bundle, tailwind_path);
+
+    // 2) Generate robots and compile SCSS sources so their CSS are available
+    crate::shared::robots::generate_robots_txt(&self.app)?;
+    crate::shared::css::compile_sass("app")?;
+    crate::shared::css::compile_sass("noscript")?;
+    crate::shared::css::compile_sass("fonts")?;
+
+    // 3) Concatenate vendor CSS in order: fonts, app, tailwind
+    crate::shared::css::concat_vendor_css(vec!["fonts", "app", "tailwind"])?;
+
+    // 4) Copy static files into build (AssetManager will copy only vendor.css and noscript.css from styles)
+    asset_manager.copy_static_assets()?;
+
+    println!("│  ✅ Site generation completed!");
+    Ok(())
     }
 
     fn generate_pages_for_language(
