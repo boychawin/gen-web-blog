@@ -19,6 +19,13 @@ use log::error;
 
 pub fn main() -> Result<()> {
     let _ = env_logger::try_init();
+
+    let name = env!("CARGO_PKG_NAME");
+    let version = env!("CARGO_PKG_VERSION");
+    
+    println!("\x1b[96m┌{:-^48}┐\x1b[0m", "");
+    println!("\x1b[96m│\x1b[97m  {} v{}{:>28}│\x1b[0m", name, version, "");
+    println!("\x1b[96m└{:-^48}┘\x1b[0m", "");
     let blog = match Generator::new("build", "contents") {
         Ok(generator) => generator,
         Err(e) => {

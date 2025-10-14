@@ -162,6 +162,7 @@ pub struct AppConfig {
     pub deploy_domains: Domains,
     pub facebook: Facebook,
     pub twitter: Twitter,
+    #[serde(default)]
     pub languages: Languages,
     pub paths: Option<Paths>,
     pub css: Option<Css>,
