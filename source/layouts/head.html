@@ -5,14 +5,12 @@
 <meta name="description" content="{{description}}" />
 <meta name="author" content="{{app_author}}" />
 <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
-
 {{#if keywords}}
 <meta name="keywords" content="{{keywords}}" />
 {{/if}}
 {{#if lang}}
 <meta http-equiv="Content-Language" content="{{lang}}" />
 {{/if}}
-
 <!-- Open Graph -->
 <meta property="og:title" content="{{title}}" />
 <meta property="og:type" content="website" />
@@ -42,7 +40,6 @@
 {{#if date_modified}}
 <meta property="og:updated_time" content="{{date_modified}}" />
 {{/if}}
-
 <!-- Open Graph / Optional Tags -->
 <meta property="og:locale" content="{{locale}}" />
 {{#if locale_alternate}}
@@ -51,7 +48,6 @@
 {{#if link_video}}
 <meta property="og:video" content="{{link_video}}" />
 {{/if}}
-
 {{#if post.author}}
 <!-- Open Graph / Article Tag -->
 <meta property="article:author" content="{{post.author}}" />
@@ -71,14 +67,12 @@
 <meta property="article:tag" content="{{this}}" />
 {{/each}}
 {{/if}}
-
 <!-- Open Graph /  Facebook Tag -->
 {{#if facebook_id}}
 <meta property="fb:admins" content="{{facebook_id}}" />{{/if}}
 {{#if facebook_app_id}}
 <meta property="fb:app_id" content="{{facebook_app_id}}" />{{/if}}
 <meta name="facebook-domain-verification" content="04vqwnnmyu1lzmxnmz72jnw1ovz8lh" />
-
 <!-- Open Graph /  Twitter Tag -->
 <meta name="twitter:card" content="summary_large_image" />
 {{#if twitter_site}}
@@ -100,17 +94,14 @@
 <meta name="twitter:label1" content="Written by" />
 <meta name="twitter:data1" content="{{app_author}}" />
 {{/if}}
-
 <!-- Canonical -->
 <link rel="canonical" href="{{url}}" />
-
 <!-- Preload Resources -->
 <link rel="preload" href="/_system_/fonts/genwebblog-regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 <link rel="preload" href="/_system_/fonts/genwebblog-bold.woff" as="font" type="font/woff" crossorigin="anonymous" />
 <link rel="preload" href="/_system_/fonts/genwebblog-italic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 <link rel="preload" href="/_system_/styles/vendor.css?v=1.0.5" as="style" />
 <link rel="stylesheet" href="/_system_/styles/vendor.css?v=1.0.5" />
-
 <!-- Favicon -->
 <link rel="icon" href="{{app_domain}}{{favicon_ico}}" type="image/x-icon" />
 <link rel="shortcut icon" href="{{app_domain}}{{favicon_ico}}" />
@@ -120,7 +111,6 @@
 <link rel="icon" type="image/svg+xml" href="{{app_domain}}{{favicon_svg}}" />
 <link rel="mask-icon" href="{{app_domain}}{{mask_icon}}" color="#ffffff" />
 <link rel="manifest" href="{{app_domain}}{{web_manifest}}" />
-
 <!-- PWA Metadata -->
 {{#if app_name}}
 <meta name="application-name" content="{{app_name}}" />
@@ -131,13 +121,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="msapplication-TileColor" content="#ffffff" />
-
 <!-- Google Metadata -->
 <meta name="google-adsense-account" content="ca-pub-5645869659828087">
 <!-- Atom Feed -->
 <link type="application/atom+xml" rel="alternate" href="{{app_domain}}/{{article.prefix}}sitemap.xml"
   title="{{article.title}}" />
-
 <!-- NoScript Fallback -->
 <noscript>
   <link rel="stylesheet" href="/_system_/styles/noscript.css" />
@@ -174,7 +162,6 @@
   "dateModified": "{{date_modified}}"
 }
 </script>
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
