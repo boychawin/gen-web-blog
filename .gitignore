@@ -12,12 +12,7 @@ target/
 **/*.rs.bk
 
 # GenWebBlog specific
-public/_system_/styles/vendor.css
-public/_system_/styles/app.css
-public/_system_/styles/fonts.css
-public/_system_/styles/noscript.css
-public/_system_/styles/tailwind.css
-
+public/_system_/styles/*
 # Build artifacts
 # build/
 
