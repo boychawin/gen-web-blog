@@ -21,7 +21,6 @@ class LanguageSwitcher {
     try {
       localStorage.setItem('selectedLanguage', lang);
     } catch (error) {
-      console.warn('Could not save language preference:', error);
     }
   }
 
@@ -29,7 +28,6 @@ class LanguageSwitcher {
     try {
       localStorage.removeItem('selectedLanguage');
     } catch (error) {
-      console.warn('Could not clear language preference:', error);
     }
   }
 
@@ -37,7 +35,6 @@ class LanguageSwitcher {
     try {
       return localStorage.getItem('selectedLanguage');
     } catch (error) {
-      console.warn('Could not get language preference:', error);
       return null;
     }
   }

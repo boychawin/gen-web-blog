@@ -58,8 +58,7 @@ self.addEventListener("fetch", (event) => {
         return cachedResponse;
       }
 
-      return fetch(event.request).catch((err) => {
-        console.warn("[ServiceWorker] Network fetch failed:", event.request.url);
+      return fetch(event.request).catch(() => {
         return new Response("Service unavailable (offline or fetch failed)", {
           status: 503,
           statusText: "Service Unavailable",

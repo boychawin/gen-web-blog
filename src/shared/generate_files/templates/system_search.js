@@ -58,7 +58,6 @@ async function performSearch(query, resultsContainer) {
 
         resultsContainer.classList.remove('hidden');
     } catch (error) {
-        console.error('Error fetching search results:', error);
         resultsContainer.innerHTML = '<p class="text-red-500">เกิดข้อผิดพลาดในการค้นหา</p>';
     }
 }

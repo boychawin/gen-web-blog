@@ -6,33 +6,6 @@
 <meta name="author" content="{{app_author}}" />
 <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
 
-<!-- Content Security Policy -->
-<meta http-equiv="Content-Security-Policy" content="
-  default-src 'self';
-  script-src 'self' 'unsafe-inline' 
-             https://pagead2.googlesyndication.com 
-             https://static.cloudflareinsights.com 
-             https://www.googletagmanager.com 
-             https://www.google-analytics.com
-             'wasm-unsafe-eval';
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' data: https: blob:;
-  font-src 'self' data: https:;
-  connect-src 'self' 
-             https://pagead2.googlesyndication.com 
-             https://static.cloudflareinsights.com 
-             https://www.google-analytics.com
-             https://cloudflareinsights.com;
-  frame-src 'self' https:;
-  object-src 'none';
-  base-uri 'self';
-  worker-src 'self';
-" />
-
-<!-- Disable SES Lockdown -->
-<meta name="referrer" content="strict-origin-when-cross-origin" />
-<meta name="x-dns-prefetch-control" content="on" />
-
 {{#if keywords}}
 <meta name="keywords" content="{{keywords}}" />
 {{/if}}
@@ -138,8 +111,6 @@
 <link rel="preload" href="/_system_/styles/vendor.css?v=1.0.5" as="style" />
 <link rel="stylesheet" href="/_system_/styles/vendor.css?v=1.0.5" />
 
-<!-- Language Switcher now uses Tailwind CSS -->
-
 <!-- Preconnect to External Services -->
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
 <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
@@ -211,56 +182,17 @@
 </script>
 <!-- Google Ads Script -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5645869659828087"
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer-when-downgrade"
+  crossorigin="anonymous" referrerpolicy="no-referrer-when-downgrade"
   onerror="console.warn('Google AdSense script failed to load')"></script>
 
-<!-- Script Error Handler -->
+
 <script>
-  // Suppress SES/lockdown warnings
-  const originalConsoleWarn = console.warn;
-  console.warn = function(...args) {
-    const message = args.join(' ');
-    if (message.includes('SES') || 
-        message.includes('lockdown') || 
-        message.includes('intrinsics') ||
-        message.includes('toTemporalInstant') ||
-        message.includes('Removing unpermitted')) {
-      // Silently ignore SES/lockdown warnings
-      return;
-    }
-    originalConsoleWarn.apply(console, args);
-  };
-
-  // Prevent Temporal API usage that causes SES warnings
-  if (typeof Date !== 'undefined' && Date.prototype && !Date.prototype.toTemporalInstant) {
-    // Add a stub to prevent SES from complaining about missing intrinsics
-    Date.prototype.toTemporalInstant = function() {
-      console.warn('Temporal API not available, falling back to Date');
-      return new Date(this);
-    };
-  }
-
-  // Handle CORS errors gracefully
-  window.addEventListener('error', function(e) {
-    if (e.target && e.target.src) {
-      if (e.target.src.includes('googlesyndication') || 
-          e.target.src.includes('cloudflareinsights')) {
-        console.warn('External script failed to load:', e.target.src);
-        // Don't let it bubble up and cause console errors
-        e.preventDefault();
-        return false;
-      }
-    }
-  }, true);
-
-  // Service Worker registration
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
         .register("/service-worker.js")
-        .then((reg) => {})
-        .catch((err) => {});
+        .then((reg) => { })
+        .catch((err) => { });
     });
   }
 </script>
