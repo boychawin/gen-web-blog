@@ -35,6 +35,56 @@ impl<'a> PageProcessor<'a> {
         }
     }
 
+    fn collect_all_posts_for_language(&self, language_code: &str) -> Vec<Post> {
+        // estimate capacity: sum of posts lengths for matching articles
+        let mut capacity = 0usize;
+        for a in self.articles {
+            if a.lang() == language_code
+                || (a.lang().is_empty() && language_code == self.app.languages.default_language)
+            {
+                capacity = capacity.saturating_add(a.posts().len());
+            }
+        }
+
+        let mut v: Vec<Post> = Vec::with_capacity(capacity);
+        for a in self.articles {
+            if a.lang() == language_code
+                || (a.lang().is_empty() && language_code == self.app.languages.default_language)
+            {
+                v.extend(a.posts().to_vec());
+            }
+        }
+        // sort latest first by numeric year, month, day
+        v.sort_by(|a, b| {
+            b.year
+                .cmp(&a.year)
+                .then(b.month.cmp(&a.month))
+                .then(b.day.cmp(&a.day))
+        });
+        v
+    }
+
+    /// Collect posts from an arbitrary slice of article references and return
+    /// them sorted by `date_published` descending. Used by index processing.
+    fn collect_posts_from_articles(all_articles: &[&Article]) -> Vec<Post> {
+        let mut capacity = 0usize;
+        for a in all_articles {
+            capacity = capacity.saturating_add(a.posts().len());
+        }
+
+        let mut v: Vec<Post> = Vec::with_capacity(capacity);
+        for a in all_articles {
+            v.extend(a.posts().to_vec());
+        }
+        v.sort_by(|a, b| {
+            b.year
+                .cmp(&a.year)
+                .then(b.month.cmp(&a.month))
+                .then(b.day.cmp(&a.day))
+        });
+        v
+    }
+
     pub fn process_article_page(
         &self,
         article: &Article,
@@ -52,18 +102,8 @@ impl<'a> PageProcessor<'a> {
             data.articles = Some(articles_data);
         }
 
-        let mut main_posts = Vec::new();
-        for article in self.articles {
-            if (article.lang() == language_code
-                || (article.lang().is_empty()
-                    && language_code == self.app.languages.default_language))
-                && article.prefix().as_os_str().is_empty()
-            {
-                main_posts.extend(article.posts().to_vec());
-            }
-        }
-        main_posts.sort_by(|a, b| b.date_published.cmp(&a.date_published));
-        data.main_posts = Some(main_posts);
+        // collect all posts across articles (global list)
+        data.all_posts = Some(self.collect_all_posts_for_language(language_code));
 
         data.type_page = self.get_type_page_for_template(&yml_info.page_name);
 
@@ -83,12 +123,7 @@ impl<'a> PageProcessor<'a> {
         let mut data = self.create_page_data(article, yml_info, language_code, translations);
         data.articles = Some(articles);
 
-        let mut all_posts = Vec::new();
-        for article in all_articles {
-            all_posts.extend(article.posts().to_vec());
-        }
-        all_posts.sort_by(|a, b| b.date_published.cmp(&a.date_published));
-        data.posts = Some(all_posts);
+        data.posts = Some(Self::collect_posts_from_articles(all_articles));
 
         data.type_page = self.get_type_page_for_template("index");
 
@@ -172,7 +207,7 @@ impl<'a> PageProcessor<'a> {
             )
         };
 
-        Data {
+            Data {
             lang: language_code.to_string(),
             locale: Some(locale.clone()),
             locale_alternate: Some(if language_code == self.app.languages.default_language {
@@ -201,7 +236,7 @@ impl<'a> PageProcessor<'a> {
             articles: None,
             post: None,
             posts: Some(article.posts().to_vec()),
-            main_posts: None,
+            all_posts: Some(self.collect_all_posts_for_language(language_code)),
             date_modified: None,
             date_published: None,
             category: None,

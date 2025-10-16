@@ -62,7 +62,7 @@ pub struct Data<'a> {
     pub articles: Option<Vec<Value>>,
     pub post: Option<Post>,
     pub posts: Option<Vec<Post>>,
-    pub main_posts: Option<Vec<Post>>,
+    pub all_posts: Option<Vec<Post>>,
     pub date_modified: Option<String>,
     pub date_published: Option<String>,
     pub category: Option<String>,

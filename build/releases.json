@@ -1,33 +1,33 @@
 {
-  "feed_updated": "2025-10-16T04:00:45+00:00",
+  "feed_updated": "2025-10-16T07:51:28+00:00",
   "posts": [
     {
-      "title": "เริ่มต้นกับ GenWebBlog",
-      "url": "/docs/getting-started.html"
-    },
-    {
-      "title": "การเขียนเนื้อหา (Markdown)",
-      "url": "/docs/writing-content.html"
+      "title": "Build & Deploy",
+      "url": "/docs/build-deploy.html"
     },
     {
       "title": "การรองรับหลายภาษา (i18n)",
       "url": "/docs/i18n.html"
     },
     {
-      "title": "Troubleshooting",
-      "url": "/docs/troubleshooting.html"
+      "title": "การเขียนเนื้อหา (Markdown)",
+      "url": "/docs/writing-content.html"
     },
     {
-      "title": "Templates & Layouts",
-      "url": "/docs/templates.html"
+      "title": "Troubleshooting",
+      "url": "/docs/troubleshooting.html"
     },
     {
       "title": "CLI Reference",
       "url": "/docs/cli-reference.html"
     },
     {
-      "title": "Build & Deploy",
-      "url": "/docs/build-deploy.html"
+      "title": "Templates & Layouts",
+      "url": "/docs/templates.html"
+    },
+    {
+      "title": "เริ่มต้นกับ GenWebBlog",
+      "url": "/docs/getting-started.html"
     },
     {
       "title": "Redirect สู่ยุคของ AEO และ GEO ที่ SEO ต้องปรับตัว",

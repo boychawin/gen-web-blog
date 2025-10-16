@@ -38,9 +38,9 @@ async function performSearch(query, resultsContainer) {
 
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
-        if (!data.releases) throw new Error('No releases found');
+        if (!data.posts) throw new Error('No posts found');
 
-        const filteredResults = data.releases.filter(release =>
+        const filteredResults = data.posts.filter(release =>
             release.title.toLowerCase().includes(query)
         );
 
