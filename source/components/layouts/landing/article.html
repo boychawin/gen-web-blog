@@ -35,14 +35,11 @@
                                 itemprop="image" sizes="(max-width: 400px) 100vw,
                                        (max-width: 768px) 50vw,
                                        (max-width: 1024px) 33vw,
-                                       400px" fetchpriority="low" loading="lazy" onload="this.style.opacity='1'"
-                                style="opacity:0;transition:opacity 0.3s ease-in-out" />
+                                       400px" fetchpriority="low" loading="lazy" />
                         </picture>
                         {{else if image}}
-                        <img src="{{image}}" alt="{{title}}" loading="lazy"
-                            fetchpriority="low" width="400" height="300"
-                            class="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
-                            onload="this.style.opacity='1'" style="opacity:0;transition:opacity 0.3s ease-in-out" />
+                        <img src="{{image}}" alt="{{title}}" loading="lazy" fetchpriority="low" width="400" height="300"
+                            class="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110" />
                         {{else}}
                         <div
                             class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900 dark:to-indigo-900">

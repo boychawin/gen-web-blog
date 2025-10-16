@@ -47,7 +47,6 @@ $font-db: 'genwebblog', sans-serif;
 
 
 html {
-  opacity: 0;
   transition: opacity var(--transition-duration) ease-in-out;
   scroll-behavior: smooth;
 }
