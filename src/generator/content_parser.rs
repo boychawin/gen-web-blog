@@ -36,7 +36,7 @@ impl<'a> ContentParser<'a> {
                     "title": article.title(),
                     "description": article.description(),
                     "url": url,
-                    "path": article.prefix().display().to_string(),
+                    "path": crate::shared::utils::ensure_leading_slash(article.prefix().display().to_string()),
                     "link_text": article.title(),
                     "post_count": article.posts().len(),
                     "date": article.date_published(),

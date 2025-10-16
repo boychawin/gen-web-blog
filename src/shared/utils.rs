@@ -1,3 +1,14 @@
+/// Ensure a string path always starts with a leading slash (unless empty)
+pub fn ensure_leading_slash<S: AsRef<str>>(path: S) -> String {
+    let s = path.as_ref();
+    if s.is_empty() {
+        "/".to_string()
+    } else if s.starts_with('/') {
+        s.to_string()
+    } else {
+        format!("/{}", s)
+    }
+}
 pub use crate::shared::css::{compile_sass, concat_vendor_css};
 pub use crate::shared::fs::{copy_dir_contents, copy_static_files, delete_file_if_exists};
 pub use crate::shared::url::{file_url, get_default_post_image, get_image};

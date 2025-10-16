@@ -34,4 +34,15 @@ account_id = "ใส่ Cloudflare Account ID"
 project_name = "ชื่อโปรเจกต์บน Cloudflare"
 
 [deploy_domains]
-list = "yourdomain.com"
+list = ""
+
+[languages]
+installed_languages = [
+    "th",
+    "en",
+]
+default_language = "th"
+
+[paths]
+use_directory_structure = true
+
